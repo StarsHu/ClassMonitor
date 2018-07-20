@@ -38,9 +38,9 @@ function plugin:UpdateVisibilityAndValue(event)
 	local visible = false
     local needUpdate = false
 	if (self.settings.autohide == false or inCombat) and CheckSpec(self.settings.specs) then
-		local name, _, _, stack, _, duration, expirationTime, unitCaster = UnitAura(self.settings.unit, self.auraName, nil, self.settings.filter)
+		local name, _, _, stack, _, duration, expirationTime, unitCaster = AuraUtil.FindAuraByName(self.auraName, self.settings.unit, self.settings.filter)
         if self.settings.countFromOther == true then
-            _, _, _, stack = UnitAura(self.settings.unit, self.countAuraName, nil, self.settings.filter)
+            _, _, stack = AuraUtil.FindAuraByName(self.auraName, self.settings.unit, self.settings.filter)
         end
         if not stack then stack = 0 end
         if self.settings.text == true then

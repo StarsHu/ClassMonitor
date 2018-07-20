@@ -42,9 +42,9 @@ function plugin:UpdateVisibility(event)
 end
 
 function plugin:UpdateValue()
-	local _, _, _, shallow = UnitBuff("player", shallowInsight, nil, "HELPFUL")
-	local _, _, _, moderate = UnitBuff("player", moderateInsight, nil, "HELPFUL")
-	local _, _, _, deep = UnitBuff("player", deepInsight, nil, "HELPFUL")
+	local _, _, shallow = UnitBuff("player", shallowInsight, nil, "HELPFUL")
+	local _, _, moderate = UnitBuff("player", moderateInsight, nil, "HELPFUL")
+	local _, _, deep = UnitBuff("player", deepInsight, nil, "HELPFUL")
 	if shallow or moderate or deep then
 		if shallow then self.points[1]:Show() end
 		if moderate then self.points[2]:Show() end

@@ -1,3 +1,6 @@
+* 3.7.0
+    1. Support 8.0
+
 * 3.6.1
     1. Fix colors argument error for POWER plugin
 

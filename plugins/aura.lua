@@ -31,7 +31,7 @@ end
 
 function plugin:UpdateValue()
 	if not self.auraName then return end
-	local name, _, _, stack, _, _, expirationTime, unitCaster = UnitAura(self.settings.unit, self.auraName, nil, self.settings.filter)
+	local name, _, _, stack, _, _, expirationTime, unitCaster = AuraUtil.FindAuraByName(self.auraName, self.settings.unit, self.settings.filter)
 	if name == self.auraName and (unitCaster == "player" or (self.settings.unit == "pet" and unitCaster == "pet")) and stack > 0 then
 		assert(stack <= self.settings.count, "Too many stacks:"..tostring(stack)..", maximum has been set to "..tostring(self.settings.count))
 		for i = 1, stack do self.stacks[i]:Show() end

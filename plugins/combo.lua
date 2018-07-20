@@ -131,7 +131,7 @@ function plugin:Enable()
 	--self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", plugin.UpdateVisibility)
 	self:RegisterEvent("UNIT_MAXPOWER", plugin.SetCounts)
 	
-	self:RegisterUnitEvent("UNIT_POWER", "player", plugin.UpdateValue)
+	self:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", plugin.UpdateValue)
 end
 
 function plugin:Disable()
