@@ -56,11 +56,7 @@ function plugin:UpdateVisibilityAndValue(event)
 	local visible = false
 	if (self.settings.autohide == false or inCombat) and CheckSpec(specs) then
 		local name, duration, expirationTime, unitCaster, value1, _
---if toc > 50001 then
-		name, _, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, _, _, _, value1 = UnitBuff("player", spellName) -- 5.1
---else
-		--name, _, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, value1 = UnitBuff("player", spellName) -- 5.0
---end
+		name, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, _, _, _, value1 = AuraUtil.FindAuraByName(spellName, "player") -- 8.0
 --print(tostring(toc).."  "..tostring(event).."  "..tostring(spellName).."=>"..tostring(name).."  "..tostring(duration).."  "..tostring(expirationTime).."  "..tostring(unitCaster).."  "..tostring(value1).."  "..tostring(value2).."  "..tostring(value3).."  "..tostring(value4))
 		if name == spellName and unitCaster == "player" and value1 ~= nil and type(value1) == "number" and value1 > 0 then
 			--self.bar.status:SetValue(duration)

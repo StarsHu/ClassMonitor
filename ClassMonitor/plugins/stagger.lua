@@ -37,9 +37,9 @@ function plugin:UpdateVisibilityAndValue(event)
 	local visible = false
 	if (self.settings.autohide == false or inCombat) and GetSpecialization() == 1 then -- only for brewmaster
 		local spellName, duration, value1, _
-			spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = UnitAura("player", lightStagger, nil, "HARMFUL")
-			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = UnitAura("player", moderateStagger, nil, "HARMFUL") end
-			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = UnitAura("player", heavyStagger, nil, "HARMFUL") end
+			spellName, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = AuraUtil.FindAuraByName(lightStagger, "player",  "HARMFUL")
+			if (not spellName) then spellName, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = AuraUtil.FindAuraByName(moderateStagger, "player", "HARMFUL") end
+			if (not spellName) then spellName, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = AuraUtil.FindAuraByName(heavyStagger, "player", "HARMFUL") end
 		if spellName and value1 ~= nil and type(value1) == "number" and value1 > 0 and duration > 0 then
 			if spellName == lightStagger then self.bar.status:SetStatusBarColor(unpack(GetColor(self.settings.colors, 1, DefaultColors[1]))) end
 			if spellName == moderateStagger then self.bar.status:SetStatusBarColor(unpack(GetColor(self.settings.colors, 2, DefaultColors[2]))) end

@@ -76,29 +76,25 @@ end
 UI.PowerColor = function(resourceName)
 	local color = nil
 	if type(resourceName) == "number" then
-		if resourceName == SPELL_POWER_MANA then
+		if resourceName == 0 then
 			color = UF.db.colors.power.MANA
-		elseif resourceName == SPELL_POWER_RAGE then
+		elseif resourceName == 1 then
 			color = UF.db.colors.power.RAGE
-		elseif resourceName == SPELL_POWER_FOCUS then
+		elseif resourceName == 2 then
 			color = UF.db.colors.power.FOCUS
-		elseif resourceName == SPELL_POWER_ENERGY then
+		elseif resourceName == 3 then
 			color = UF.db.colors.power.ENERGY
 		--elseif resourceName == SPELL_POWER_RUNES then
-		elseif resourceName == SPELL_POWER_RUNIC_POWER then
+		elseif resourceName == 6 then
 			color = UF.db.colors.power.RUNIC_POWER
-		elseif resourceName == SPELL_POWER_SOUL_SHARDS then
+		elseif resourceName == 7 then
 			color = UF.db.colors.classResources.WARLOCK[1]
 		--elseif resourceName == SPELL_POWER_ECLIPSE then
-		elseif resourceName == SPELL_POWER_HOLY_POWER then
+		elseif resourceName == 9 then
 			color = UF.db.colors.holyPower
 		--elseif resourceName == SPELL_POWER_CHI then
-		elseif resourceName == SPELL_POWER_SHADOW_ORBS then 
+		elseif resourceName == 13 then
 			color = UF.db.colors.classResources.PRIEST
-		elseif resourceName == SPELL_POWER_BURNING_EMBERS then 
-			color = UF.db.colors.classResources.WARLOCK[3]
-		elseif resourceName == SPELL_POWER_DEMONIC_FURY then
-			color = UF.db.colors.classResources.WARLOCK[2]
 		end
 	else
 		color = UF.db.colors.power[resourceName]

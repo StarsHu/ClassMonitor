@@ -30,16 +30,17 @@ end
 
 function CastbarPlugin:Enable()
 	--
-	self:RegisterUnitEvent("UNIT_SPELLCAST_START", self.settings.unit, CastbarPlugin.SpellCastStart)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", self.settings.unit, CastbarPlugin.SpellCastFailed)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", self.settings.unit, CastbarPlugin.SpellCastInterrupted)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_STOP", self.settings.unit, CastbarPlugin.SpellCastStop)
+
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_START", self.settings.unit, CastbarPlugin.SpellCastStart)
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", self.settings.unit, CastbarPlugin.SpellCastFailed)
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", self.settings.unit, CastbarPlugin.SpellCastInterrupted)
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_STOP", self.settings.unit, CastbarPlugin.SpellCastStop)
 	--UNIT_SPELLCAST_INTERRUPTIBLE
 	--UNIT_SPELLCAST_NOT_INTERRUPTIBLE
 	--UNIT_SPELLCAST_DELAYED
-	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", self.settings.unit, CastbarPlugin.SpellCastChannelStart)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", self.settings.unit, CastbarPlugin.SpellCastChannelUpdate) 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", self.settings.unit, CastbarPlugin.SpellCastChannelStop) 
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", self.settings.unit, CastbarPlugin.SpellCastChannelStart)
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", self.settings.unit, CastbarPlugin.SpellCastChannelUpdate)
+--	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", self.settings.unit, CastbarPlugin.SpellCastChannelStop)
 end
 
 function CastbarPlugin:Disable()
@@ -108,7 +109,7 @@ function CastbarPlugin:Update(elapsed)
 end
 
 function CastbarPlugin:SpellCastStart(_, unit, spell, _, lineID, spellID)
-	local name, _, text, _, startTime, endTime, _, castID, notInterruptible = UnitCastingInfo(self.settings.unit)
+	local name, text, _, startTime, endTime, _, castID, notInterruptible = UnitCastingInfo(self.settings.unit)
 	if not name then return end
 
 	self.endTime = endTime / 1e3
@@ -137,7 +138,7 @@ function CastbarPlugin:SpellCastStop(_, unit, spell, _, lineID, spellID)
 end
 
 function CastbarPlugin:SpellCastChannelStart(_, unit, spell, _, lineID, spellID)
-	local name, _, text, _, startTime, endTime, _, notInterruptible = UnitChannelInfo(self.settings.unit)
+	local name, text, _, startTime, endTime, _, notInterruptible = UnitChannelInfo(self.settings.unit)
 
 	self.endTime = endTime / 1e3
 	self.startTime = startTime / 1e3

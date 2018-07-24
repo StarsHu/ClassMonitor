@@ -1,3 +1,9 @@
+* 1.4.0
+    1.  Fix error
+
+* 1.4.0b1
+    1.  Update ACE libs to r1182, support 8.0
+
 * 1.3.1
     1.  Update ACE libs, Fix change of PlaySound API in 7.3.0
     

@@ -6,11 +6,11 @@ local D = Engine.Definitions
 local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
 
 local powerTypes = {
-	[SPELL_POWER_HOLY_POWER] = L.PowerValueHolyPower,
-	[SPELL_POWER_SOUL_SHARDS] = L.PowerValueSoulShards,
-	[SPELL_POWER_CHI] = L.PowerValueChi,
-	[SPELL_POWER_ARCANE_CHARGES] = L.PowerValueArcaneBlast,
-	[SPELL_POWER_COMBO_POINTS] = L.PluginShortDescription_COMBO,
+	[4] = L.PluginShortDescription_COMBO,
+	[7] = L.PowerValueSoulShards,
+	[9] = L.PowerValueHolyPower,
+	[12] = L.PowerValueChi,
+	[16] = L.PowerValueArcaneBlast,
 }
 local function GetPowerTypes()
 	return powerTypes

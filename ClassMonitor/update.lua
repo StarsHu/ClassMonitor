@@ -30,16 +30,16 @@ local function CheckVersion(self, event, prefix, message, channel, sender)
 		-- Tell everyone what version we use.
 		if (not IsInGroup(LE_PARTY_CATEGORY_HOME)) or (not IsInRaid(LE_PARTY_CATEGORY_HOME)) then
 --print("1")
-			SendAddonMessage(MessagePrefix, LocalVersion, "INSTANCE_CHAT")
+			C_ChatInfo.SendAddonMessage(MessagePrefix, LocalVersion, "INSTANCE_CHAT")
 		elseif IsInRaid(LE_PARTY_CATEGORY_HOME) then
 --print("2")
-			SendAddonMessage(MessagePrefix, LocalVersion, "RAID") 
+			C_ChatInfo.SendAddonMessage(MessagePrefix, LocalVersion, "RAID")
 		elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then
 --print("3")
-			SendAddonMessage(MessagePrefix, LocalVersion, "PARTY")
+			C_ChatInfo.SendAddonMessage(MessagePrefix, LocalVersion, "PARTY")
 		elseif IsInGuild() then
 --print("4")
-			SendAddonMessage(MessagePrefix, LocalVersion, "GUILD")
+			C_ChatInfo.SendAddonMessage(MessagePrefix, LocalVersion, "GUILD")
 		end
 	end
 end
@@ -50,5 +50,5 @@ ClassMonitorVersionFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
 ClassMonitorVersionFrame:RegisterEvent("CHAT_MSG_ADDON")
 ClassMonitorVersionFrame:SetScript("OnEvent", CheckVersion)
 
-registered = RegisterAddonMessagePrefix(MessagePrefix)
+registered = C_ChatInfo.RegisterAddonMessagePrefix(MessagePrefix)
 -- if registered is not true, we cannot send message because prefix has not been registered

@@ -21,7 +21,7 @@ function plugin:Update(elapsed)
         self.bar.status:SetValue(value)
         if self.settings.text == true then
             local p = UnitPowerType("player")
-            if p == SPELL_POWER_MANA then
+            if p == 0 then
                 local valueMax = UnitPowerMax("player", p)
                 if value == valueMax then
                     -- if value > 10000 then
@@ -127,7 +127,7 @@ function plugin:Enable()
     self:RegisterEvent("PLAYER_REGEN_DISABLED", plugin.UpdateVisibility)
     self:RegisterEvent("PLAYER_REGEN_ENABLED", plugin.UpdateVisibility)
     self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", plugin.UpdateVisibility)
-    self:RegisterUnitEvent("UNIT_POWER", "player", plugin.UpdateVisibility)
+    self:RegisterUnitEvent("UNIT_POWER_UPDATE", "player", plugin.UpdateVisibility)
 
     self:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player", plugin.UpdateMaxValueAndColor)
     self:RegisterUnitEvent("UNIT_MAXPOWER", "player", plugin.UpdateMaxValueAndColor)

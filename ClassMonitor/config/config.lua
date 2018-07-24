@@ -96,15 +96,6 @@ Engine.Config = {
 	colors = { blood, unholy, frost, death }						color of runes
 	runemap = { 1, 2, 3, 4, 5, 6 }									see instruction in DEATHKNIGHT section
 
-	ECLIPSE
-	日月食-已删除
-	autohide = true|false											hide or not while out of combat [default: false]
-	text = true|false												display eclipse direction [default: true]
-	anchor=															see note below
-	width = number													width of eclipse bar [default: 85]
-	height = number													height of eclipse bar [default: 16]
-	colors = { lunar, solar }										color of lunar and solar bar
-
 	ENERGIZE
 	内置CD
 	anchor = 														see note below
@@ -156,17 +147,6 @@ Engine.Config = {
 	text = true|false												display totem duration left [default:false]
 	map = array of number											totem remapping
 		example: { 2, 1, 3, 4 }										display second totem, followed by first totem, then third and fourth
-
-	BANDITSGUILE:
-	dz-盗匪之诈-已删除
-	autohide = true|false											hide or not while out of combat [default: true]
-	anchor =														see note below
-	--width = number													width of bandit's guilde charge [default: 85]
-	width = number													bar total width (point * count + spacing * count-1)
-	height = number													height of bandit's guilde charge [default: 16]
-	--spacing = number												space between bandit's guilde charge [default: 3]
-	color|colors =													see note below [default: class color]
-	filled = true|false												is bandit's guilde charge filled or not [default: false]
 
 	STAGGER
 	monk-醉拳
@@ -300,7 +280,7 @@ Engine.Config = {
 			displayName = L.classmonitor_PALADIN_HOLYPOWERBAR,
 			kind = "POWER",
 			specs = {3},
-			powerType = SPELL_POWER_HOLY_POWER,
+			powerType = 9,
 			count = 5,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
 			width = 262,
@@ -338,8 +318,7 @@ Engine.Config = {
 			name = "CM_SOUL_SHARD",
 			displayName = L.classmonitor_WARLOCK_SOULSHARDS,
 			kind = "POWER",
-			powerType = SPELL_POWER_SOUL_SHARDS,
---			count = 5,
+			powerType = 7,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
 			width = 262,
@@ -347,48 +326,9 @@ Engine.Config = {
 			--spacing = 3,
 			color = {148/255, 130/255, 201/255, 1},
 			filled = true,
---            borderRemind = true,
+            borderRemind = true,
 			verticalIndex = -1,
 			horizontalIndex = 0,
-			specs = {1, 2},
-		},
-		{
-			name = "CM_BURNING_SOUL_SHARD",
-			displayName = L.classmonitor_WARLOCK_BURNING_SOULSHARDS,
-			kind = "BURNING_SOUL_SHARD",
-			powerType = SPELL_POWER_SOUL_SHARDS,
---			count = 5,
-			autohide = false,
-			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
-			width = 262,
-			height = 16,
-			--spacing = 3,
-			color = {148/255, 130/255, 201/255, 1},
-			filled = true,
---            borderRemind = true,
-			verticalIndex = -1,
-			horizontalIndex = 0,
-			specs = {3},
-		},
-		{
-			name = "CM_REAP_SOULS",
-			displayName = L.classmonitor_WARLOCK_REAPSOULS,
-			kind = "AURABAR",
-			autohide = true,
-			showspellname = false,
-			unit = "player",
-			spellID = 216708,
-			color = {148/255, 130/255, 201/255, 1},
-			countFromOther = true,
-			countSpellID = 216695,
-			filter = "HELPFUL",
-			anchor = { "TOPLEFT", "CM_MANA", "BOTTOMLEFT", 0, -3 },
-			width = 262,
-			height = 16,
-			count =	12,
-			text = true,
-			duration = true,
-			specs = {1},
 		},
 	},
 	["ROGUE"] = {
@@ -481,7 +421,7 @@ Engine.Config = {
 			name = "CM_ARCANE_BLAST",
 			displayName = L.classmonitor_MAGE_ARCANE,
 			kind = "POWER",
-			powerType = SPELL_POWER_ARCANE_CHARGES,
+			powerType = 16,
 			count = 5,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
@@ -630,19 +570,19 @@ Engine.Config = {
 			verticalIndex = 0,
 			horizontalIndex = 0,
 		},
-		{
-			name = "CM_TOTEM",
-			displayName = L.classmonitor_SHAMAN_TOTEMS,
-			kind = "TOTEMS",
-			autohide = false,
-			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
-			width = 262,
-			height = 16,
-			--spacing = 3,
-			count = 4,
-			specs = {4},
-			text = true,
-		},
+--		{
+--			name = "CM_TOTEM",
+--			displayName = L.classmonitor_SHAMAN_TOTEMS,
+--			kind = "TOTEMS",
+--			autohide = false,
+--			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
+--			width = 262,
+--			height = 16,
+--			--spacing = 3,
+--			count = 4,
+--			specs = {4},
+--			text = true,
+--		},
 	},
 	["MONK"] = {
 		{
@@ -671,7 +611,7 @@ Engine.Config = {
 			displayName = L.classmonitor_MONK_CHICHARGES,
 			kind = "POWER",
 			specs = {3},
-			powerType = SPELL_POWER_LIGHT_FORCE or 12, -- Bug in 5.1
+			powerType = 12, -- Bug in 5.1
 			count = 5,
 			anchor = { "BOTTOMLEFT", "CM_RESOURCE", "TOPLEFT", 0, 3 },
 			width = 262,
