@@ -350,7 +350,7 @@ StaticPopupDialogs["CLASSMONITOR_MULTISAMPLE_PROBLEM"] = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = function()
-		SetCVar("gxMultisample", 1)
+		SetCVar("ffxAntiAliasingMode", 1)
 		RestartGx()
 	end,
 	OnCancel = function()
@@ -361,7 +361,7 @@ StaticPopupDialogs["CLASSMONITOR_MULTISAMPLE_PROBLEM"] = {
 	hideOnEscape = false,
 }
 local function CheckMultisampling()
-	if GetCVar("gxMultisample") ~= "1" and not ClassMonitorData.MultisamplingChecked then
+	if GetCVar("ffxAntiAliasingMode") ~= "1" and not ClassMonitorData.MultisamplingChecked then
 		StaticPopup_Show("CLASSMONITOR_MULTISAMPLE_PROBLEM")
 	end
 end

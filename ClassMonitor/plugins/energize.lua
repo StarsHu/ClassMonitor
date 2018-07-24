@@ -110,7 +110,7 @@ function plugin:Initialize()
 	-- set defaults
 	self.settings.filling = DefaultBoolean(self.settings.filling, false)
 	self.settings.color = self.settings.color or UI.ClassColor()
-	self.settings.duration = self.settings.duration or 12
+	self.settings.duration = 10
 	-- no default for spellID
 	--
 	self:UpdateGraphics()

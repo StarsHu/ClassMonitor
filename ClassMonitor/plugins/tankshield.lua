@@ -4,10 +4,11 @@ if not Engine.Enabled then return end
 local UI = Engine.UI
 
 local cfg = {
-	["WARRIOR"] = { spellID = 112048, specs = {3} }, -- Shield Barrier
-	["MONK"] = { spellID = 115295, specs = {1} }, -- Guard
+	--["WARRIOR"] = { spellID = 112048, specs = {3} }, -- Shield Barrier
+	["WARRIOR"] = { spellID = 190456, specs = {3} }, -- 无视痛苦
+	--["MONK"] = { spellID = 115295, specs = {1} }, -- Guard
 	["DEATHKNIGHT"] = { spellID = 77535, specs = {1} }, -- Blood Shield
-	["PALADIN"] = { spellID = 65148, specs = {2} }, -- Sacred Shield
+	--["PALADIN"] = { spellID = 65148, specs = {2} }, -- Sacred Shield
 }
 
 if not cfg[UI.MyClass] then return end -- only available for WARRIOR, MONK, DK and PALADIN
@@ -55,12 +56,12 @@ function plugin:UpdateVisibilityAndValue(event)
 	local visible = false
 	if (self.settings.autohide == false or inCombat) and CheckSpec(specs) then
 		local name, duration, expirationTime, unitCaster, value1, _
-if toc > 50001 then
-		name, _, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, _, value1 = UnitBuff("player", spellName) -- 5.1
-else
-		name, _, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, value1 = UnitBuff("player", spellName) -- 5.0
-end
---print(tostring(toc).."  "..tostring(event).."  "..tostring(spellName).."=>"..tostring(name).."  "..tostring(duration).."  "..tostring(expirationTime).."  "..tostring(unitCaster).."  "..tostring(value1))
+--if toc > 50001 then
+		name, _, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, _, _, _, value1 = UnitBuff("player", spellName) -- 5.1
+--else
+		--name, _, _, _, _, duration, expirationTime, unitCaster, _, _, _, _, _, value1 = UnitBuff("player", spellName) -- 5.0
+--end
+--print(tostring(toc).."  "..tostring(event).."  "..tostring(spellName).."=>"..tostring(name).."  "..tostring(duration).."  "..tostring(expirationTime).."  "..tostring(unitCaster).."  "..tostring(value1).."  "..tostring(value2).."  "..tostring(value3).."  "..tostring(value4))
 		if name == spellName and unitCaster == "player" and value1 ~= nil and type(value1) == "number" and value1 > 0 then
 			--self.bar.status:SetValue(duration)
 			self.bar.status:SetMinMaxValues(0, duration)

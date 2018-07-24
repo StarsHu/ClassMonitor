@@ -36,15 +36,15 @@ function plugin:UpdateVisibilityAndValue(event)
 	local visible = false
 	if (self.settings.autohide == false or inCombat) and GetSpecialization() == 1 then -- only for brewmaster
 		local spellName, duration, value1, _
-		if toc > 50001 then
-			spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, value1 = UnitAura("player", lightStagger, nil, "HARMFUL")
-			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, value1 = UnitAura("player", moderateStagger, nil, "HARMFUL") end
-			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, value1 = UnitAura("player", heavyStagger, nil, "HARMFUL") end
-		else
-			spellName, _, _, _, _, duration, _, _, _, _, _, _, _, value1 = UnitAura("player", lightStagger, nil, "HARMFUL")
-			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, value1 = UnitAura("player", moderateStagger, nil, "HARMFUL") end
-			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, value1 = UnitAura("player", heavyStagger, nil, "HARMFUL") end
-		end
+		--if toc > 50001 then
+			spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = UnitAura("player", lightStagger, nil, "HARMFUL")
+			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = UnitAura("player", moderateStagger, nil, "HARMFUL") end
+			if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, _, _, _, value1 = UnitAura("player", heavyStagger, nil, "HARMFUL") end
+		--else
+			-- spellName, _, _, _, _, duration, _, _, _, _, _, _, _, value1 = UnitAura("player", lightStagger, nil, "HARMFUL")
+			-- if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, value1 = UnitAura("player", moderateStagger, nil, "HARMFUL") end
+			-- if (not spellName) then spellName, _, _, _, _, duration, _, _, _, _, _, _, _, value1 = UnitAura("player", heavyStagger, nil, "HARMFUL") end
+		-- end
 --print(tostring(toc).."  "..tostring(spellName).."=>"..tostring(name).."  "..tostring(duration).."  "..tostring(value1))
 		if spellName and value1 ~= nil and type(value1) == "number" and value1 > 0 and duration > 0 then
 			if spellName == lightStagger then self.bar.status:SetStatusBarColor(unpack(GetColor(self.settings.colors, 1, DefaultColors[1]))) end

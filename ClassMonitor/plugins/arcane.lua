@@ -1,9 +1,9 @@
--- Combo Points plugin
+-- Arcane blast plugin
 local ADDON_NAME, Engine = ...
 if not Engine.Enabled then return end
 local UI = Engine.UI
 
-if UI.MyClass ~= "ROGUE" and UI.MyClass ~= "DRUID" then return end -- combo not needed for other classes
+--if UI.MyClass ~= "MAGE" then return end
 
 local CheckSpec = Engine.CheckSpec
 local PixelPerfect = Engine.PixelPerfect
@@ -11,18 +11,9 @@ local DefaultBoolean = Engine.DefaultBoolean
 local GetColor = Engine.GetColor
 
 --
-local plugin = Engine:NewPlugin("COMBO")
+local plugin = Engine:NewPlugin("ARCANE")
 
-local DefaultColors = {
-	{0.69, 0.31, 0.31, 1}, -- 1
-	{0.65, 0.42, 0.31, 1}, -- 2
-	{0.65, 0.63, 0.35, 1}, -- 3
-	{0.46, 0.63, 0.35, 1}, -- 4
-	{0.33, 0.63, 0.33, 1}, -- 5
-	{0.33, 0.63, 0.33, 1}, -- 6
-	{0.33, 0.63, 0.33, 1}, -- 7
-	{0.33, 0.63, 0.33, 1}, -- 8
-}
+local DefaultColors = UI.ClassColor()
 
 -- own methods
 function plugin:UpdateVisibility(event)
@@ -41,14 +32,15 @@ function plugin:UpdateVisibility(event)
 end
 
 function plugin:UpdateValue()
-	local points = GetComboPoints("player", "target")
+--print("aa")
+	local points = UnitPower("player", 16)
+--print(tostring(points))
 	if points and points > 0 then
 		for i = 1, points do self.points[i]:Show() end
 		for i = points+1, self.count do self.points[i]:Hide() end
 	else
 		for i = 1, self.count do self.points[i]:Hide() end
 	end
---print(tostring(points))
 end
 
 function plugin:UpdateGraphics()
@@ -108,17 +100,8 @@ function plugin:Initialize()
 	self.settings.filled = DefaultBoolean(self.settings.filled, false)
 	self.settings.colors = self.settings.colors or DefaultColors
 
-	-- self.count = 8
+	self.count = 4
 
-	-- self:UpdateGraphics()
-	self:SetCounts()
-end
-
-function plugin:SetCounts()
-
-	self.count = UnitPowerMax("player", 4)
-
---print(tostring(self.count))
 	self:UpdateGraphics()
 end
 
@@ -127,8 +110,8 @@ function plugin:Enable()
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", plugin.UpdateVisibility)
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", plugin.UpdateVisibility)
 	self:RegisterEvent("PLAYER_TARGET_CHANGED", plugin.UpdateVisibility)
-	--self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", plugin.UpdateVisibility)
-	self:RegisterEvent("UNIT_MAXPOWER", plugin.SetCounts)
+	self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", plugin.UpdateVisibility)
+	--self:RegisterEvent("UNIT_MAXPOWER", plugin.SetCounts)
 	
 	self:RegisterUnitEvent("UNIT_POWER", "player", plugin.UpdateValue)
 end

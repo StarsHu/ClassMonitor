@@ -172,3 +172,9 @@ pip-log.txt
 
 # Profiles
 profiles.lua
+
+#############
+## JetBrains
+#############
+
+.idea/

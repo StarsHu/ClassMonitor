@@ -7,7 +7,8 @@ local powerTypes = {
 	[SPELL_POWER_HOLY_POWER] = L.PowerValueHolyPower,
 	[SPELL_POWER_SOUL_SHARDS] = L.PowerValueSoulShards,
 	[SPELL_POWER_CHI] = L.PowerValueChi,
-	[SPELL_POWER_SHADOW_ORBS] = L.PowerValueShadowOrbs,
+	[16] = L.PowerValueArcaneBlast, 
+	--[SPELL_POWER_SHADOW_ORBS] = L.PowerValueShadowOrbs,
 }
 local function GetPowerTypes()
 	return powerTypes

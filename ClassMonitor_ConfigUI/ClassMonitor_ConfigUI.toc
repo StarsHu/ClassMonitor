@@ -1,5 +1,5 @@
-## Interface: 50400
-## Version: 1.2.7
+## Interface: 50001
+## Version: 1.1
 ## Author: SinaC
 ## Credits: Elv, Starinnia, Puffina
 ## Title: |cFF148587Class|r Monitor Config

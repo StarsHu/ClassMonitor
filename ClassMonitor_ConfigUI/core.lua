@@ -48,7 +48,6 @@ local function BuildAce3Options()
 		name = "Class Monitor",
 		args = {
 		},
-		order = 500
 	}
 	local index = 1
 	-- Add global width option
@@ -84,94 +83,92 @@ local function BuildAce3Options()
 	return options
 end
 
---if ElvUI then
-if false then -- Quick and dirty workaround for problem with ElvUI config. Will be fixed later.
-	local E = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB, Localize Underscore
+-- if ElvUI then
+	-- local E = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB, Localize Underscore
 
-	--
-	Engine.InitializeConfigUI = function(config, savedPerChar, savedPerAccount, updatePluginFunction, createPluginFunction, deletePluginFunction, autoGridAnchorFunction, getPluginListFunction)
-		-- Set globals
-		G.Config = config
-		G.SavedPerChar = savedPerChar
-		G.SavedPerAccount = savedPerAccount
-		G.PluginUpdateFunction = updatePluginFunction
-		G.PluginCreateFunction = createPluginFunction
-		G.PluginDeleteFunction = deletePluginFunction
-		G.AutoGridAnchorFunction = autoGridAnchorFunction
-		G.GetPluginListFunction = getPluginListFunction
-		--
-		E.Options.args.ClassMonitor = BuildAce3Options() -- no need to add a root node, ElvUI config panel is our root node
-		HookAce3OnHide(ACD, "ElvUI")
-		--
-		G.Options = E.Options.args.ClassMonitor
-	end
-	--
-	Engine.DisplayConfigFrame = function()
-		--
-		G.ConfigModified = false
-		--
-		E:ToggleConfig()
-		ACD:SelectGroup("ElvUI", "ClassMonitor") -- try to select classmonitor node
-	end
---elseif Tukui then
-elseif Tukui or Elvui then -- Quick and dirty workaround for problem with ElvUI config. Will be fixed later.
-	local blizOptions = nil
+	-- --
+	-- Engine.InitializeConfigUI = function(config, savedPerChar, savedPerAccount, updatePluginFunction, createPluginFunction, deletePluginFunction, autoGridAnchorFunction, getPluginListFunction)
+		-- -- Set globals
+		-- G.Config = config
+		-- G.SavedPerChar = savedPerChar
+		-- G.SavedPerAccount = savedPerAccount
+		-- G.PluginUpdateFunction = updatePluginFunction
+		-- G.PluginCreateFunction = createPluginFunction
+		-- G.PluginDeleteFunction = deletePluginFunction
+		-- G.AutoGridAnchorFunction = autoGridAnchorFunction
+		-- G.GetPluginListFunction = getPluginListFunction
+		-- --
+		-- E.Options.args.ClassMonitor = BuildAce3Options() -- no need to add a root node, ElvUI config panel is our root node
+		-- HookAce3OnHide(ACD, "ElvUI")
+		-- --
+		-- G.Options = E.Options.args.ClassMonitor
+	-- end
+	-- --
+	-- Engine.DisplayConfigFrame = function()
+		-- --
+		-- G.ConfigModified = false
+		-- --
+		-- E:ToggleConfig()
+		-- ACD:SelectGroup("ElvUI", "ClassMonitor") -- try to select classmonitor node
+	-- end
+-- elseif Tukui then
+	-- local blizOptions = nil
 
-	Engine.InitializeConfigUI = function(config, savedPerChar, savedPerAccount, updatePluginFunction, createPluginFunction, deletePluginFunction, autoGridAnchorFunction, getPluginListFunction)
-		-- Set globals
-		G.Config = config
-		G.SavedPerChar = savedPerChar
-		G.SavedPerAccount = savedPerAccount
-		G.PluginUpdateFunction = updatePluginFunction
-		G.PluginCreateFunction = createPluginFunction
-		G.PluginDeleteFunction = deletePluginFunction
-		G.AutoGridAnchorFunction = autoGridAnchorFunction
-		G.GetPluginListFunction = getPluginListFunction
-		--[[
-print("NEW CONFIG")
-		-- create options
-		local options = BuildAce3Options()
-		-- add to AceConfig and blizzard menu
-		--                       addon name
-		ACR:RegisterOptionsTable("ClassMonitor", options)
-		--                                 addon name       display name         path
-		blizOptions = ACD:AddToBlizOptions("ClassMonitor", "Class Monitor", nil, "GeneralOptions") -- save blizzard options entry point to be used in DisplayConfigFrame
-		for k, v in pairs(options.args) do
-print("SUB MENU:"..tostring(k))
-			if k ~= "GeneralOptions" then
-				-- add to blizzard menu
-				--                                 addon name                                            parent display name | path
-				ACD:AddToBlizOptions("ClassMonitor", v.displayName or v.name, "Class Monitor", v.name)
-			end
-		end
-		--]]
-		--
-		local options = BuildAce3Options()
-		local rootNode = { -- add a root node, to get a tree with general/global options on ClassMonitor and plugins as children of ClassMonitor
-			type = "group",
-			--childGroups = "tree", -- default
-			--childGroups = "select",
-			--childGroups = "tab",
-			name = "Class Monitor",
-			args = {
-				ClassMonitor = options,
-			}
-		}
-		AC:RegisterOptionsTable("ClassMonitor", rootNode)
-		--
-		G.Options = rootNode.args.ClassMonitor
-	end
-	--
-	Engine.DisplayConfigFrame = function()
-		--
-		G.ConfigModified = false
-		--
-		--InterfaceOptionsFrame_OpenToCategory(blizOptions)
-		ACD:SetDefaultSize("ClassMonitor", 640, 480)
-		ACD:Open("ClassMonitor")
-		HookAce3OnHide(ACD, "ClassMonitor")
-	end
-else
+	-- Engine.InitializeConfigUI = function(config, savedPerChar, savedPerAccount, updatePluginFunction, createPluginFunction, deletePluginFunction, autoGridAnchorFunction, getPluginListFunction)
+		-- -- Set globals
+		-- G.Config = config
+		-- G.SavedPerChar = savedPerChar
+		-- G.SavedPerAccount = savedPerAccount
+		-- G.PluginUpdateFunction = updatePluginFunction
+		-- G.PluginCreateFunction = createPluginFunction
+		-- G.PluginDeleteFunction = deletePluginFunction
+		-- G.AutoGridAnchorFunction = autoGridAnchorFunction
+		-- G.GetPluginListFunction = getPluginListFunction
+		-- --[[
+-- print("NEW CONFIG")
+		-- -- create options
+		-- local options = BuildAce3Options()
+		-- -- add to AceConfig and blizzard menu
+		-- --                       addon name
+		-- ACR:RegisterOptionsTable("ClassMonitor", options)
+		-- --                                 addon name       display name         path
+		-- blizOptions = ACD:AddToBlizOptions("ClassMonitor", "Class Monitor", nil, "GeneralOptions") -- save blizzard options entry point to be used in DisplayConfigFrame
+		-- for k, v in pairs(options.args) do
+-- print("SUB MENU:"..tostring(k))
+			-- if k ~= "GeneralOptions" then
+				-- -- add to blizzard menu
+				-- --                                 addon name                                            parent display name | path
+				-- ACD:AddToBlizOptions("ClassMonitor", v.displayName or v.name, "Class Monitor", v.name)
+			-- end
+		-- end
+		-- --]]
+		-- --
+		-- local options = BuildAce3Options()
+		-- local rootNode = { -- add a root node, to get a tree with general/global options on ClassMonitor and plugins as children of ClassMonitor
+			-- type = "group",
+			-- --childGroups = "tree", -- default
+			-- --childGroups = "select",
+			-- --childGroups = "tab",
+			-- name = "Class Monitor",
+			-- args = {
+				-- ClassMonitor = options,
+			-- }
+		-- }
+		-- AC:RegisterOptionsTable("ClassMonitor", rootNode)
+		-- --
+		-- G.Options = rootNode.args.ClassMonitor
+	-- end
+	-- --
+	-- Engine.DisplayConfigFrame = function()
+		-- --
+		-- G.ConfigModified = false
+		-- --
+		-- --InterfaceOptionsFrame_OpenToCategory(blizOptions)
+		-- ACD:SetDefaultSize("ClassMonitor", 640, 480)
+		-- ACD:Open("ClassMonitor")
+		-- HookAce3OnHide(ACD, "ClassMonitor")
+	-- end
+-- else
 	Engine.InitializeConfigUI = function(config, savedPerChar, savedPerAccount, updatePluginFunction, createPluginFunction, deletePluginFunction, autoGridAnchorFunction, getPluginListFunction)
 		-- Set globals
 		G.Config = config
@@ -205,4 +202,4 @@ else
 		ACD:Open("ClassMonitor")
 		HookAce3OnHide(ACD, "ClassMonitor")
 	end
-end
+--end

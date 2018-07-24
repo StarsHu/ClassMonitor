@@ -159,6 +159,7 @@ if GetLocale() == "zhCN" then
 	L.PowerValueSoulShards = "灵魂碎片"
 	L.PowerValueChi = "气"
 	L.PowerValueShadowOrbs = "暗影宝珠"
+	L.PowerValueArcaneBlast = "奥术充能"
 	L.PowerCount = "最大能量数"
 	L.PowerCountDesc = "最大能量数"
 	L.PowerFilledDesc = "填充/不填充"
@@ -166,11 +167,6 @@ if GetLocale() == "zhCN" then
 	L.RechargeTextDesc = "显示充能的剩余时间"
 
 	L.RechargeBarTextDesc = "显示剩余时间"
-
-	L.ResolveLow = "矮"
-	L.ResolveMed = "中"
-	L.ResolveHigh = "高"
-	L.ResolveVeryHigh = "非常高"
 
 	L.ResourceTextDesc = "显示当前值"
 	L.ResourceHideifmax = "最大值时隐藏"
@@ -244,6 +240,4 @@ if GetLocale() == "zhCN" then
 	L.PluginDescription_CD = "在一个监视条上显示法术名称及剩余冷却时间"
 	L.PluginShortDescription_STATUE = "雕像/光明之泉/食尸鬼/战旗监视条"
 	L.PluginDescription_STATUE = "在一个监视条上显示以下技能的剩余时间：武僧雕像、死骑食尸鬼、牧师光明之泉和战士战旗"
-	L.PluginShortDescription_RESOLVE = "解析"
-	L.PluginDescription_RESOLVE = "Display a bar with the current healing and absorption modifier and damage taken in the last 10 sec."
 end

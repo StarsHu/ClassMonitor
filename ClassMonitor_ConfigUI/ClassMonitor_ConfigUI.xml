@@ -21,18 +21,13 @@
 	<Script file="definitions\plugins\runes.lua"/>
 	<Script file="definitions\plugins\eclipse.lua"/>
 	<Script file="definitions\plugins\totems.lua"/>
-	<Script file="definitions\plugins\burningembers.lua"/>
-	<Script file="definitions\plugins\demonicfury.lua"/>
 	<Script file="definitions\plugins\dot.lua"/>
 	<Script file="definitions\plugins\energize.lua"/>
-	<Script file="definitions\plugins\banditsguile.lua"/>
 	<Script file="definitions\plugins\stagger.lua"/>
 	<Script file="definitions\plugins\tankshield.lua"/>
-	<Script file="definitions\plugins\cd.lua"/>
 	<Script file="definitions\plugins\recharge.lua"/>
 	<Script file="definitions\plugins\rechargebar.lua"/>
-	<Script file="definitions\plugins\resolve.lua"/>
-	<Script file="definitions\plugins\statue.lua"/>
+	<Script file="definitions\plugins\cd.lua"/>
 
 	<Script file="tukuiAce3Skin.lua"/>
 

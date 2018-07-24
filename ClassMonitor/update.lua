@@ -11,13 +11,10 @@ local PlayerName = select(1, UnitName("player"))
 local MessagePrefix = "CMVersion"
 local SendAddonMessage = SendAddonMessage
 
-local registered = nil
-
 --
 local function CheckVersion(self, event, prefix, message, channel, sender)
 --print("CheckVersion:"..tostring(event).."  "..tostring(prefix).."  "..tostring(message).."  "..tostring(channel).."  "..tostring(sender))
 	if event == "CHAT_MSG_ADDON" then
---print("CHAT_MSG_ADDON:"..tostring(sender).."  "..tostring(message).."  "..tostring(prefix))
 		if (prefix ~= MessagePrefix) or (sender == PlayerName) then 
 			return
 		end
@@ -25,20 +22,16 @@ local function CheckVersion(self, event, prefix, message, channel, sender)
 			print("|cffffff00"..L.classmonitor_outdated.."|r")
 			self:UnregisterEvent("CHAT_MSG_ADDON")
 		end
-	elseif registered == true then
---print("OK")
+	else
 		-- Tell everyone what version we use.
-		if (not IsInGroup(LE_PARTY_CATEGORY_HOME)) or (not IsInRaid(LE_PARTY_CATEGORY_HOME)) then
---print("1")
-			SendAddonMessage(MessagePrefix, LocalVersion, "INSTANCE_CHAT")
-		elseif IsInRaid(LE_PARTY_CATEGORY_HOME) then
---print("2")
+		local bg = UnitInBattleground("player")
+		if bg and bg > 0 then
+			SendAddonMessage(MessagePrefix, LocalVersion, "BATTLEGROUND")
+		elseif UnitInRaid("player") then
 			SendAddonMessage(MessagePrefix, LocalVersion, "RAID") 
-		elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then
---print("3")
+		elseif UnitInParty("player") then
 			SendAddonMessage(MessagePrefix, LocalVersion, "PARTY")
 		elseif IsInGuild() then
---print("4")
 			SendAddonMessage(MessagePrefix, LocalVersion, "GUILD")
 		end
 	end
@@ -50,5 +43,4 @@ ClassMonitorVersionFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
 ClassMonitorVersionFrame:RegisterEvent("CHAT_MSG_ADDON")
 ClassMonitorVersionFrame:SetScript("OnEvent", CheckVersion)
 
-registered = RegisterAddonMessagePrefix(MessagePrefix)
--- if registered is not true, we cannot send message because prefix has not been registered
+RegisterAddonMessagePrefix(MessagePrefix)

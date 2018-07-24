@@ -12,6 +12,9 @@ function D.Helpers:NewPluginDefinition(pluginName, definition, shortDescription,
 --print("ADD PLUGIN DEFINITION:"..tostring(pluginName).."  "..tostring(shortDescription))
 	Engine.Definitions[pluginName] = definition
 	Engine.Descriptions[pluginName] = {short = shortDescription, long = longDescription}
+--print(tostring(Engine.Descriptions[pluginName].short).."  "..tostring(Engine.Descriptions[pluginName].long))
+	--Engine.Descriptions[pluginName]short = shortDescription
+	--Engine.Descriptions[pluginName]long = longDescription
 end
 
 ----------------------------------------------------------------------------------------
@@ -164,7 +167,7 @@ local function GetKindValues()
 		if G.GetPluginListFunction and type(G.GetPluginListFunction) == "function" then
 			local pluginList = G:GetPluginListFunction()
 			for kind in pairs(pluginList) do
---print("KIND:"..tostring(kind).."  "..tostring(Engine.Descriptions[kind].short).."  "..tostring(Engine.Descriptions[kind].long))
+--print("KIND:"..tostring(kind).."  "..tostring(Engine.Descriptions[kind]["short"]).."  "..tostring(Engine.Descriptions[kind]["long"]))
 				kindValues[kind] = Engine.Descriptions[kind].short or kind
 			end
 		end
@@ -279,6 +282,7 @@ D.Helpers.Unit = {
 }
 
 local function GetPluginDescription(info)
+print(unpack(Engine))
 	return info.arg.section.kind ~= "" and (Engine.Descriptions[info.arg.section.kind].long or L.NoPluginDescription) or ""
 end
 D.Helpers.Description = {

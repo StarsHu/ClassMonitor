@@ -78,7 +78,7 @@ local function SetTemplate(f, t, tex)
 end
 
 local function SetInside(obj, anchor, xOffset, yOffset)
-	xOffset = xOffset or 2 -- must be equal to UI.Border
+	xOffset = xOffset or 2
 	yOffset = yOffset or 2
 	anchor = anchor or obj:GetParent()
 
@@ -150,7 +150,6 @@ UI.PetBattleHider = petBattleHider
 UI.NormTex = normTex
 UI.MyClass = select(2, UnitClass("player"))
 UI.MyName = UnitName("player")
-UI.Border = 2
 
 UI.SetFontString = function(parent, fontHeight, fontStyle)
 	local fs = parent:CreateFontString(nil, "OVERLAY")
