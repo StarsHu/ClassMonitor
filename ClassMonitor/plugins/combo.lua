@@ -9,6 +9,7 @@ local CheckSpec = Engine.CheckSpec
 local PixelPerfect = Engine.PixelPerfect
 local DefaultBoolean = Engine.DefaultBoolean
 local GetColor = Engine.GetColor
+local ColorPercent = Engine.ColorPercent
 
 --
 local plugin = Engine:NewPlugin("COMBO")
@@ -89,7 +90,9 @@ function plugin:UpdateGraphics()
 			point.status:SetFrameLevel(6)
 			point.status:SetInside()
 		end
-		local color = GetColor(self.settings.colors, i, DefaultColors[i])
+--		local color = GetColor(self.settings.colors, i, DefaultColors[i])
+		local color = ColorPercent(DefaultColors[1], DefaultColors[5], i, self.count)
+--		print("color: "..unpack(color))
 		if self.settings.filled == true then
 			point.status:SetStatusBarColor(unpack(color))
 			point.status:Show()

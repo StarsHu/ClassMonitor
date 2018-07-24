@@ -23,9 +23,9 @@ local texture = blank
 local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb = 0, 0, 0, 1, 0, 0, 0
 
 --local mult = 1
-local resolution = GetCVar("gxResolution")
+local resolution = GetCVar("gxWindowedResolution")
 local uiscale = min(2, max(.64, 768/string.match(resolution, "%d+x(%d+)")))
-local mult = 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)") / uiscale
+local mult = 768 / string.match(GetCVar("gxWindowedResolution"), "%d+x(%d+)") / uiscale
 --print(tostring(mult).."  "..tostring(resolution).."  "..tostring(uiscale))
 local function Scale(x)
 	return mult*math.floor(x/mult+.5)
@@ -144,6 +144,29 @@ local ResourceColor = {
 local UnitTappedColor = {.6,.6,.6}
 local UnitDisconnectedColor = {.6, .6, .6}
 
+local function Reset()
+	-- delete data per char
+	for k, v in pairs(ClassMonitorDataPerChar) do
+		ClassMonitorDataPerChar[k] = nil
+	end
+	-- delete data per realm
+	for k, v in pairs(ClassMonitorData) do
+		ClassMonitorData[k] = nil
+	end
+	-- reload
+	ReloadUI()
+end
+
+StaticPopupDialogs["CLASSMONITOR_RESET"] = {
+	text = L.classmonitor_command_reset,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = Reset,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
 --
 UI.BorderColor = bordercolor
 UI.PetBattleHider = petBattleHider
@@ -171,9 +194,9 @@ end
 
 UI.HealthColor = function(unit)
 	local color = {1, 1, 1, 1}
-	if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-		color = UnitTappedColor
-	elseif not UnitIsConnected(unit) then
+	--if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
+		--color = UnitTappedColor
+	if not UnitIsConnected(unit) then
 		color = UnitDisconnectedColor
 	elseif UnitIsPlayer(unit) or (UnitPlayerControlled(unit) and not UnitIsPlayer(unit)) then
 		local class = select(2, UnitClass(unit)) or UI.MyClass
@@ -247,3 +270,5 @@ UI.Move = function()
 	enable = not enable
 	return enable
 end
+
+UI.StaticPopup_Reset_show = function() StaticPopup_Show("CLASSMONITOR_RESET") end

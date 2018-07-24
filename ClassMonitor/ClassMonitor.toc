@@ -1,5 +1,5 @@
 ## Interface: 70000
-## Version: 3.6.0r
+## Version: 3.6.1r
 ## Author: SinaC
 ## Title: |cFF148587Class|r Monitor
 ## Credits: Smelly, Hydra, Krevlorne, Ildyria, Puffina

@@ -20,7 +20,6 @@
 
 	<Script file="plugin.lua"/>
 
-	<Script file="plugins\arcane.lua"/>
 	<Script file="plugins\aura.lua"/>
 	<Script file="plugins\aurabar.lua"/>
 	<Script file="plugins\power.lua"/>
@@ -28,11 +27,9 @@
 	<Script file="plugins\resource.lua"/>
 	<Script file="plugins\health.lua"/>
 	<Script file="plugins\runes.lua"/>
-	<Script file="plugins\eclipse.lua"/>
 	<Script file="plugins\totems.lua"/>
 	<Script file="plugins\dot.lua"/>
 	<Script file="plugins\energize.lua"/>
-	<Script file="plugins\banditsguile.lua"/>
 	<Script file="plugins\stagger.lua"/>
 	<Script file="plugins\tankshield.lua"/>
 	<Script file="plugins\CD.lua"/>

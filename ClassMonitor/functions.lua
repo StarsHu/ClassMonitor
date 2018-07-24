@@ -51,6 +51,23 @@ Engine.GetColor = function(colors, index, default)
 	return colors[index] -- colors[index] exists
 end
 
+-- Return a color, position of which in the range of color is the percent
+Engine.ColorPercent = function(color_begin, color_end, percent_or_index, count)
+	if not color_begin or not color_end or not percent_or_index then return end
+	local percent
+	if count then
+        percent = (percent_or_index-1)/(count-1)
+    else
+        percent = percent_or_index
+    end
+    local color = {}
+    for i=1, #color_begin do
+        color[i] = color_begin[i]+(color_end[i]-color_begin[i])*percent
+	end
+--	print(unpack(color))
+    return color
+end
+
 -- Return value or default is value is nil
 Engine.DefaultBoolean = function(value, default)
 	if value == nil then

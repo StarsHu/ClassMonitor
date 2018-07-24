@@ -5,24 +5,22 @@ This version is compatible with standard Blizzard UI, Tukui and ElvUI. This repl
 To move frames, you can use /clm move or /moveui if you're using Tukui/ElvUI 
 To config, you can use /clm config (or /ec in ElvUI) 
 
-[Config Module Reponsitory](https://github.com/StarsHu/ClassMonitor_ConfigUI)
-
 If you see blurry borders on top/bottom of bars, try with multisampling set to 1 (it's impossible to perform pixel perfect with multisampling set higher than 1) You may also try to set an even value for bar height and/or move your bars one pixel above/below
 
 You can still modify your config by creating a new file profiles.lua in /ClassMonitor/config/ but it will be lost each time you perform an update of the addon. 
 
 ### Default functions by class:
-* Druid: mana/rage/energy, combo
-* Paladin: mana, holy power
-* Warlock: mana, soul shards
-* Rogue: energy, combo
-* Priest: mana, shadow orbs,
-* Mage: mana, arcane blast
-* DK: runic power, runes blood shield
-* Hunter: mana, focus
+* Druid: mana/rage/energy, combo, ~~eclipse, mushrooms~~
+* Paladin: mana, holy power, ~~sacred shield~~
+* Warlock: mana, soul shards, ~~burning embers, demonic fury~~
+* Rogue: energy, combo, ~~anticipation, bandit's guile~~ 
+* Priest: mana, shadow orbs, ~~rapture ICD~~
+* Mage: mana, arcane blast, ~~ignite, combustion~~ 
+* DK: runic power, runes, ~~shadow infusion, bone shield~~, blood shield
+* Hunter: mana, focus, ~~pet's frenzy~~
 * Warrior: rage, shield barrier 
-* Shaman: mana, maelstorm
-* Monk: mana/energy, chi, stagger
+* Shaman: power, ~~fulmination, maelstrom, totems~~ 
+* Monk: mana/energy, chi, ~~mana tea, elusive brew, tigereye brew~~, stagger, ~~guard~~ 
 
 Additional plugin (must be added in config.lua or with config UI): 
 Health, CD, Recharge (points and bar CD with charge like monk's roll) , Aura (points and bar check buff or debuff) 

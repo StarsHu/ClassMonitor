@@ -390,11 +390,11 @@ frame:SetScript("OnEvent", function(self, event, addon)
 		-- Greetings
 		local version = GetAddOnMetadata(ADDON_NAME, "Version")
 		local configVersion = GetAddOnMetadata("ClassMonitor_ConfigUI", "Version")
-		if configVersion then
-			print(string.format(L.classmonitor_greetingwithconfig, tostring(version), tostring(configVersion)))
-		else
-			print(string.format(L.classmonitor_greetingnoconfig, tostring(version)))
-		end
+		-- if configVersion then
+			-- print(string.format(L.classmonitor_greetingwithconfig, tostring(version), tostring(configVersion)))
+		-- else
+			-- print(string.format(L.classmonitor_greetingnoconfig, tostring(version)))
+		-- end
 		print(string.format(L.classmonitor_help_use, SLASH_CLASSMONITOR1, SLASH_CLASSMONITOR2))
 		--
 		ClassMonitorData = ClassMonitorData or {}

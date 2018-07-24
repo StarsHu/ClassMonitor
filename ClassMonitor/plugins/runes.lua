@@ -14,9 +14,8 @@ local plugin = Engine:NewPlugin("RUNES")
 
 local DefaultColors = {
 	{ 0.69, 0.31, 0.31, 1 }, -- Blood
-	{ 0.33, 0.59, 0.33, 1 }, -- Unholy
 	{ 0.31, 0.45, 0.63, 1 }, -- Frost
-	{ 0.84, 0.75, 0.65, 1 }, -- Death
+	{ 0.33, 0.59, 0.33, 1 }, -- Death
 }
 
 -- own methods
@@ -46,11 +45,8 @@ function plugin:Update(elapsed)
 		for i = 1, self.count do
 			local runeIndex = self.settings.runemap[i]
 			local start, duration, finished = GetRuneCooldown(runeIndex)
-			local runeType = GetRuneType(runeIndex)
 
 			local rune = self.runes[i]
-			local color = GetColor(self.settings.colors[runeType], runeType, DefaultColors[runeType])
-			rune.status:SetStatusBarColor(unpack(color))
 			rune.status:SetMinMaxValues(0, duration)
 
 			if finished then
@@ -101,8 +97,8 @@ function plugin:UpdateGraphics()
 			rune.status:SetInside()
 			rune.status:SetMinMaxValues(0, 10)
 		end
-		local colorIndex = math.ceil(self.settings.runemap[i]/2)
-		local color = GetColor(self.settings.colors[colorIndex], colorIndex, DefaultColors[colorIndex])
+		local specIndex = GetSpecialization()
+		local color = GetColor(self.settings.colors[specIndex])
 		rune.status:SetStatusBarColor(unpack(color))
 		rune.status:SetOrientation(self.settings.orientation)
 	end
@@ -113,13 +109,8 @@ function plugin:Initialize()
 	-- set defaults
 	self.settings.updatethreshold = self.settings.updatethreshold or 0.1
 	self.settings.orientation = self.settings.orientation or "HORIZONTAL"
-	-- runemap instructions.
-	-- This is the order you want your runes to be displayed in (down to bottom or left to right).
-	-- 1,2 = Blood
-	-- 3,4 = Unholy
-	-- 5,6 = Frost
-	-- (Note: All numbers must be included or it will break)
-	self.settings.runemap = self.settings.runemap or { 1, 2, 3, 4, 5, 6 }
+
+	self.settings.runemap = { 1, 2, 3, 4, 5, 6 }
 	self.settings.colors = self.settings.colors or DefaultColors
 	--
 	self.count = 6
@@ -131,6 +122,8 @@ function plugin:Enable()
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", plugin.UpdateVisibility)
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", plugin.UpdateVisibility)
 	self:RegisterEvent("PLAYER_ENTERING_WORLD", plugin.UpdateVisibility)
+	
+	self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", plugin.UpdateGraphics)
 end
 
 function plugin:Disable()

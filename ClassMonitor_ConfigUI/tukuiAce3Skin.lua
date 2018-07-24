@@ -14,7 +14,7 @@ local function FontTemplate(fs, font, fontSize, fontStyle)
 	fs.fontSize = fontSize
 	fs.fontStyle = fontStyle
 
-	if not font then font = C["media"].font end
+	if not font then font = C["Medias"]["Font"] end
 	if not fontSize then fontSize = 10 end
 
 	fs:SetFont(font, fontSize, fontStyle)
@@ -29,7 +29,7 @@ end
 
 local function SetOriginalBackdrop(self)
 	if self.backdrop then self = self.backdrop end
-	self:SetBackdropBorderColor(unpack(C['media'].bordercolor))
+	self:SetBackdropBorderColor(unpack(C['Medias']["BorderColor"]))
 end
 
 local function SkinScrollBar(frame, thumbTrim)
@@ -49,7 +49,7 @@ local function SkinScrollBar(frame, thumbTrim)
 			_G[frame:GetName().."ScrollUpButton"].texture = _G[frame:GetName().."ScrollUpButton"]:CreateTexture(nil, 'OVERLAY')
 			_G[frame:GetName().."ScrollUpButton"].texture:SetInside()
 			_G[frame:GetName().."ScrollUpButton"].texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowup.tga]])
-			_G[frame:GetName().."ScrollUpButton"].texture:SetVertexColor(unpack(C["media"].bordercolor))
+			_G[frame:GetName().."ScrollUpButton"].texture:SetVertexColor(unpack(C["General"]["BorderColor"]))
 		end
 		_G[frame:GetName().."ScrollUpButton"]:HookScript('OnEnter', SetModifiedBackdrop)
 		_G[frame:GetName().."ScrollUpButton"]:HookScript('OnLeave', SetOriginalBackdrop)
@@ -60,7 +60,7 @@ local function SkinScrollBar(frame, thumbTrim)
 			_G[frame:GetName().."ScrollDownButton"].texture = _G[frame:GetName().."ScrollDownButton"]:CreateTexture(nil, 'OVERLAY')
 			_G[frame:GetName().."ScrollDownButton"].texture:SetInside()
 			_G[frame:GetName().."ScrollDownButton"].texture:SetTexture([[Interface\AddOns\Tukui\medias\textures\arrowdown.tga]])
-			_G[frame:GetName().."ScrollDownButton"].texture:SetVertexColor(unpack(C["media"].bordercolor))
+			_G[frame:GetName().."ScrollDownButton"].texture:SetVertexColor(unpack(C["General"]["BorderColor"]))
 		end
 		_G[frame:GetName().."ScrollDownButton"]:HookScript('OnEnter', SetModifiedBackdrop)
 		_G[frame:GetName().."ScrollDownButton"]:HookScript('OnLeave', SetOriginalBackdrop)
@@ -188,13 +188,13 @@ local function SkinAce3()
 
 			SkinNextPrevButton(button, true)
 
-			if not frame.backdrop then
+			if not frame.Backdrop then
 				frame:CreateBackdrop("Default")
-				frame.backdrop:Point("TOPLEFT", 20, -2)
-				frame.backdrop:Point("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
+				frame.Backdrop:Point("TOPLEFT", 20, -2)
+				frame.Backdrop:Point("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
 			end
-			button:SetParent(frame.backdrop)
-			text:SetParent(frame.backdrop)
+			button:SetParent(frame.Backdrop)
+			text:SetParent(frame.Backdrop)
 			button:HookScript('OnClick', function(this)
 				local self = this.obj
 				self.pullout.frame:SetTemplate('Default', true)
@@ -212,27 +212,27 @@ local function SkinAce3()
 			button:ClearAllPoints()
 			button:Point("RIGHT", frame, "RIGHT", -10, -6)
 
-			if not frame.backdrop then
+			if not frame.Backdrop then
 				frame:CreateBackdrop("Default")
 				if TYPE == "LSM30_Font" then
-					frame.backdrop:Point("TOPLEFT", 20, -17)
+					frame.Backdrop:Point("TOPLEFT", 20, -17)
 				elseif TYPE == "LSM30_Sound" then
-					frame.backdrop:Point("TOPLEFT", 20, -17)
-					widget.soundbutton:SetParent(frame.backdrop)
+					frame.Backdrop:Point("TOPLEFT", 20, -17)
+					widget.soundbutton:SetParent(frame.Backdrop)
 					widget.soundbutton:ClearAllPoints()
-					widget.soundbutton:Point('LEFT', frame.backdrop, 'LEFT', 2, 0)
+					widget.soundbutton:Point('LEFT', frame.Backdrop, 'LEFT', 2, 0)
 				elseif TYPE == "LSM30_Statusbar" then
-					frame.backdrop:Point("TOPLEFT", 20, -17)
-					widget.bar:SetParent(frame.backdrop)
+					frame.Backdrop:Point("TOPLEFT", 20, -17)
+					widget.bar:SetParent(frame.Backdrop)
 					widget.bar:SetInside()
 				elseif TYPE == "LSM30_Border" or TYPE == "LSM30_Background" then
-					frame.backdrop:Point("TOPLEFT", 42, -16)
+					frame.Backdrop:Point("TOPLEFT", 42, -16)
 				end
 
-				frame.backdrop:Point("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
+				frame.Backdrop:Point("BOTTOMRIGHT", button, "BOTTOMRIGHT", 2, -2)
 			end
-			button:SetParent(frame.backdrop)
-			text:SetParent(frame.backdrop)
+			button:SetParent(frame.Backdrop)
+			text:SetParent(frame.Backdrop)
 			button:HookScript('OnClick', function(this, button)
 				local self = this.obj
 				if self.dropdown then
@@ -242,23 +242,21 @@ local function SkinAce3()
 		elseif TYPE == "EditBox" then
 			local frame = widget.editbox
 			local button = widget.button
-			_G[frame:GetName()..'Left']:Kill()
-			_G[frame:GetName()..'Middle']:Kill()
-			_G[frame:GetName()..'Right']:Kill()
+			_G[frame:GetName()]:Kill()
 			frame:Height(17)
 			frame:CreateBackdrop('Default')
-			frame.backdrop:Point('TOPLEFT', -2, 0)
-			frame.backdrop:Point('BOTTOMRIGHT', 2, 0)
-			frame.backdrop:SetParent(widget.frame)
-			frame:SetParent(frame.backdrop)
+			frame.Backdrop:Point('TOPLEFT', -2, 0)
+			frame.Backdrop:Point('BOTTOMRIGHT', 2, 0)
+			frame.Backdrop:SetParent(widget.frame)
+			frame:SetParent(frame.Backdrop)
 			SkinButton(button)
 		elseif TYPE == "Button" then
 			local frame = widget.frame
 			SkinButton(frame, nil, true)
 			frame:StripTextures()
 			frame:CreateBackdrop('Default', true)
-			frame.backdrop:SetInside()
-			widget.text:SetParent(frame.backdrop)
+			frame.Backdrop:SetInside()
+			widget.text:SetParent(frame.Backdrop)
 		elseif TYPE == "Slider" then
 			local frame = widget.slider
 			local editbox = widget.editbox
@@ -269,8 +267,8 @@ local function SkinAce3()
 			frame:StripTextures()
 			frame:SetTemplate('Default')
 			frame:Height(HEIGHT)
-			frame:SetThumbTexture(C["media"].blank)
-			frame:GetThumbTexture():SetVertexColor(unpack(C["media"].bordercolor))
+			frame:SetThumbTexture(C["Medias"]["Blank"])
+			--frame:GetThumbTexture():SetVertexColor(C["Medias"]["BorderColor"])
 			frame:GetThumbTexture():Size(HEIGHT-2,HEIGHT+2)
 
 			editbox:SetTemplate('Default')
@@ -280,10 +278,10 @@ local function SkinAce3()
 			lowtext:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 2, -2)
 			hightext:SetPoint("TOPRIGHT", frame, "BOTTOMRIGHT", -2, -2)
 
-		--[[elseif TYPE == "ColorPicker" then
+		elseif TYPE == "ColorPicker" then
 			local frame = widget.frame
 			local colorSwatch = widget.colorSwatch
-		]]
+		
 		end
 		return oldRegisterAsWidget(self, widget)
 	end
