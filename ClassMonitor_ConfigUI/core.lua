@@ -48,6 +48,7 @@ local function BuildAce3Options()
 		name = "Class Monitor",
 		args = {
 		},
+		order = 500
 	}
 	local index = 1
 	-- Add global width option

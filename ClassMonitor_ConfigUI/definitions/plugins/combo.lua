@@ -22,9 +22,18 @@ local options = {
 		set = D.Helpers.SetValue,
 		disabled = D.Helpers.IsPluginDisabled
 	},
-	[10] = colors,
-	[11] = D.Helpers.Anchor,
-	[12] = D.Helpers.AutoGridAnchor,
+    [10] = {
+		key = "borderRemind",
+		name = L.BorderRemind,
+		desc = L.ComboBorderRemindDesc,
+		type = "toggle",
+		get = D.Helpers.GetValue,
+		set = D.Helpers.SetValue,
+		disabled = D.Helpers.IsPluginDisabled
+	},
+	[11] = colors,
+	[12] = D.Helpers.Anchor,
+	[13] = D.Helpers.AutoGridAnchor,
 }
 
 D.Helpers:NewPluginDefinition("COMBO", options, L.PluginShortDescription_COMBO, L.PluginDescription_COMBO)

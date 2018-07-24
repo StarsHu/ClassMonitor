@@ -3,12 +3,14 @@ local ADDON_NAME, Engine = ...
 local L = Engine.Locales
 local D = Engine.Definitions
 
+local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
+
 local powerTypes = {
 	[SPELL_POWER_HOLY_POWER] = L.PowerValueHolyPower,
 	[SPELL_POWER_SOUL_SHARDS] = L.PowerValueSoulShards,
 	[SPELL_POWER_CHI] = L.PowerValueChi,
-	[16] = L.PowerValueArcaneBlast, 
-	--[SPELL_POWER_SHADOW_ORBS] = L.PowerValueShadowOrbs,
+	[SPELL_POWER_ARCANE_CHARGES] = L.PowerValueArcaneBlast,
+	[SPELL_POWER_COMBO_POINTS] = L.PluginShortDescription_COMBO,
 }
 local function GetPowerTypes()
 	return powerTypes
@@ -33,16 +35,6 @@ local options = {
 		set = D.Helpers.SetValue,
 		disabled = D.Helpers.IsPluginDisabled
 	},
-	[10] = {
-		key = "count",
-		name = L.PowerCount,
-		desc = L.PowerCountDesc,
-		type = "range",
-		min = 1, max = 20, step = 1,
-		get = D.Helpers.GetValue,
-		set = D.Helpers.SetValue,
-		disabled = D.Helpers.IsPluginDisabled
-	},
 	[11] = {
 		key = "filled",
 		name = L.Filled,
@@ -61,9 +53,18 @@ local options = {
 		set = D.Helpers.SetValue,
 		disabled = D.Helpers.IsPluginDisabled
 	},
-	-- TODO: colors
-	[13] = D.Helpers.Anchor,
-	[14] = D.Helpers.AutoGridAnchor,
+	[13] = {
+		key = "borderRemind",
+		name = L.BorderRemind,
+		desc = L.ComboBorderRemindDesc,
+		type = "toggle",
+		get = D.Helpers.GetValue,
+		set = D.Helpers.SetValue,
+		disabled = D.Helpers.IsPluginDisabled
+	},
+	[14] = color,
+	[15] = D.Helpers.Anchor,
+	[16] = D.Helpers.AutoGridAnchor,
 }
 
 D.Helpers:NewPluginDefinition("POWER", options, L.PluginShortDescription_POWER, L.PluginDescription_POWER)

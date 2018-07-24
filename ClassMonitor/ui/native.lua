@@ -129,16 +129,25 @@ petBattleHider:SetAllPoints(UIParent)
 RegisterStateDriver(petBattleHider, "visibility", "[petbattle] hide; show")
 
 local ResourceColor = {
-	["MANA"] = {0.31, 0.45, 0.63},
-	["RAGE"] = {0.69, 0.31, 0.31},
-	["FOCUS"] = {0.71, 0.43, 0.27},
-	["ENERGY"] = {0.65, 0.63, 0.35},
-	["RUNES"] = {0.55, 0.57, 0.61},
-	["RUNIC_POWER"] = {0, 0.82, 1},
-	["AMMOSLOT"] = {0.8, 0.6, 0},
-	["FUEL"] = {0, 0.55, 0.5},
-	["POWER_TYPE_STEAM"] = {0.55, 0.57, 0.61},
-	["POWER_TYPE_PYRITE"] = {0.60, 0.09, 0.17}
+	["MANA"]              = {0.31, 0.45, 0.63},
+	["INSANITY"]          = {0.40, 0.00, 0.80},
+	["MAELSTROM"]         = {0.00, 0.50, 1.00},
+	["LUNAR_POWER"]       = {0.93, 0.51, 0.93},
+	["HOLY_POWER"]        = {0.95, 0.90, 0.60},
+	["RAGE"]              = {0.69, 0.31, 0.31},
+	["FOCUS"]             = {0.71, 0.43, 0.27},
+	["ENERGY"]            = {0.65, 0.63, 0.35},
+	["CHI"]               = {0.71, 1.00, 0.92},
+	["RUNES"]             = {0.55, 0.57, 0.61},
+	["SOUL_SHARDS"]       = {0.50, 0.32, 0.55},
+	["FURY"]              = {0.78, 0.26, 0.99},
+	["PAIN"]              = {1.00, 0.61, 0.00},
+	["RUNIC_POWER"]       = {0.00, 0.82, 1.00},
+	["AMMOSLOT"]          = {0.80, 0.60, 0.00},
+	["FUEL"]              = {0.00, 0.55, 0.50},
+	["POWER_TYPE_STEAM"]  = {0.55, 0.57, 0.61},
+	["POWER_TYPE_PYRITE"] = {0.60, 0.09, 0.17},
+	["ALTPOWER"]          = {0.00, 1.00, 1.00},
 }
 
 local UnitTappedColor = {.6,.6,.6}
@@ -173,6 +182,7 @@ UI.PetBattleHider = petBattleHider
 UI.NormTex = normTex
 UI.MyClass = select(2, UnitClass("player"))
 UI.MyName = UnitName("player")
+UI.Border = 2
 
 UI.SetFontString = function(parent, fontHeight, fontStyle)
 	local fs = parent:CreateFontString(nil, "OVERLAY")

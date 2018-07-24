@@ -3,7 +3,7 @@ local ADDON_NAME, Engine = ...
 if not Engine.Enabled then return end
 local UI = Engine.UI
 
-if UI.MyClass ~= "SHAMAN" and UI.MyClass ~= "DRUID" then return end -- Totems for shaman and Mushrooms for druid
+if UI.MyClass ~= "SHAMAN" and UI.MyClass ~= "DRUID" and UI.MyClass ~= "WARLOCK" then return end
 
 local ToClock = Engine.ToClock
 local CheckSpec = Engine.CheckSpec
@@ -37,7 +37,7 @@ end
 function plugin:Update()
 	for i = 1, self.settings.count do
 		local totem = self.totems[i]
-		local up, name, start, duration, icon = GetTotemInfo(i)
+		local up, name, start, duration = GetTotemInfo(i)
 		if up then
 			local timeLeft = (start+duration) - GetTime()
 			totem.duration = duration

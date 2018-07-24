@@ -282,7 +282,7 @@ D.Helpers.Unit = {
 }
 
 local function GetPluginDescription(info)
-print(unpack(Engine))
+-- print(unpack(Engine))
 	return info.arg.section.kind ~= "" and (Engine.Descriptions[info.arg.section.kind].long or L.NoPluginDescription) or ""
 end
 D.Helpers.Description = {
@@ -424,7 +424,7 @@ D.Helpers.Spell = {
 		},
 		--]]
 		spellIcon = {
-			order = 3,
+			order = 2,
 			name = GetSpellName, --"Invalid",
 			type = "description",
 			--image = "INTERFACE/ICONS/INV_MISC_QUESTIONMARK",

@@ -1,3 +1,24 @@
+* 1.2.5
+    1. Update rune
+    2. fix bugs
+
+* 1.2.4
+    1. Add Reap Souls AuraBar as default of Warlock
+
+* 1.2.3
+    1. Update version
+    2. Now can config stagger bar test size
+
+* 1.2.2
+    1. Now almost all plugins can set color except PowerBar
+    2. Fix totems error
+
+* 1.2.1
+    1. Add borderRemind feature
+
+* 1.2.0
+    1. Merge from SinaC/master
+
 * 1.1.1
     1. now can work with Tukui
 	2. fix Slider texture

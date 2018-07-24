@@ -144,10 +144,27 @@ local options = {
 		set = D.Helpers.SetValue,
 		disabled = D.Helpers.IsPluginDisabled
 	},
-	[10] = runeMap,
-	[11] = colors,
 	[12] = D.Helpers.Anchor,
 	[13] = D.Helpers.AutoGridAnchor,
+	[14] = {
+		key = "duration",
+		name = L.RuneDuration,
+		desc = L.RuneDurationDesc,
+		type = "toggle",
+		get = D.Helpers.GetValue,
+		set = D.Helpers.SetValue,
+		disabled = D.Helpers.IsPluginDisabled
+	},
+	[15] = {
+		key = "durationTextSize",
+		name = L.RuneDurationSize,
+		desc = L.RuneDurationSizeDesc,
+		type = "range",
+		min = 6, max = 20, step = 1,
+		get = D.Helpers.GetValue,
+		set = D.Helpers.SetValue,
+		disabled = D.Helpers.IsPluginDisabled
+	},
 }
 
 D.Helpers:NewPluginDefinition("RUNES", options, L.PluginShortDescription_RUNES, L.PluginDescription_RUNES)

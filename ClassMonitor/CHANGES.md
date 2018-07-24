@@ -1,3 +1,32 @@
+* 3.5.7
+    1. Update Rune
+    
+* 3.5.6
+    1. Update AuraBar
+    2. Add Reap Souls AuraBar as default of Warlock
+
+* 3.5.5
+    1. Update version
+    2. Now can config stagger bar test size
+
+* 3.5.4
+    1. Now warlock can use totems plugin
+
+* 3.5.3
+    1. Add borderRemind feature
+
+* 3.5.2
+    1. UI.Border added (sometimes useful when we cannot use :SetInside)
+    2. Rare issue fixed with RegisterAddonMessagePrefix
+    3. Bug fix with outdated message in BG
+    4. Bug fixed in ENERGIZE plugin, duration was always reset to 10 :/ (thanks Nize)
+    5. Embeds.xml CRLF fixed
+    6. AURA and POWER can be displayed from right to left or left to right (reverse option)
+    7.Config: AURABAR missing Filter config option added
+
+* 3.5.1
+    1. Add DH support
+
 * 3.5.0
     1. Now Combo points color will change smoothly
     1. Fix texture issue of Reset Popup

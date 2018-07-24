@@ -18,8 +18,8 @@ local options = {
 		desc = L.TotemsCountDesc,
 		type = "select",
 		values = {
-			[3] = "Wild Mushrooms (3)",
-			[4] = "Totems (4)",
+			[1] = L.TotemsEfflorescence,
+			[4] = L.TotemsShaman,
 		},
 		get = D.Helpers.GetValue,
 		set = D.Helpers.SetValue,

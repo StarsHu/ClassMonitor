@@ -16,13 +16,7 @@ local plugin = Engine:NewPlugin("COMBO")
 
 local DefaultColors = {
 	{0.69, 0.31, 0.31, 1}, -- 1
-	{0.65, 0.42, 0.31, 1}, -- 2
-	{0.65, 0.63, 0.35, 1}, -- 3
-	{0.46, 0.63, 0.35, 1}, -- 4
-	{0.33, 0.63, 0.33, 1}, -- 5
-	{0.33, 0.63, 0.33, 1}, -- 6
-	{0.33, 0.63, 0.33, 1}, -- 7
-	{0.33, 0.63, 0.33, 1}, -- 8
+	{0.33, 0.63, 0.33, 1}, -- 2
 }
 
 -- own methods
@@ -43,11 +37,20 @@ end
 
 function plugin:UpdateValue()
 	local points = GetComboPoints("player", "target")
-	if points and points > 0 then
-		for i = 1, points do self.points[i]:Show() end
-		for i = points+1, self.count do self.points[i]:Hide() end
+	if self.settings.borderRemind == true then
+		if points and points > 0 then
+			for i = 1, points do self.points[i].status:Show() end
+			for i = points+1, self.count do self.points[i].status:Hide() end
+		else
+			for i = 1, self.count do self.points[i].status:Hide() end
+		end
 	else
-		for i = 1, self.count do self.points[i]:Hide() end
+		if points and points > 0 then
+			for i = 1, points do self.points[i]:Show() end
+			for i = points+1, self.count do self.points[i]:Hide() end
+		else
+			for i = 1, self.count do self.points[i]:Hide() end
+		end
 	end
 --print(tostring(points))
 end
@@ -74,7 +77,8 @@ function plugin:UpdateGraphics()
 			point = CreateFrame("Frame", nil, self.frame)
 			point:SetTemplate()
 			point:SetFrameStrata("BACKGROUND")
-			point:Hide()
+			point:SetBackdropColor(1, 1, 1, 0)
+			if not self.settings.borderRemind == true then point:Hide() end
 			self.points[i] = point
 		end
 		point:Size(width, height)
@@ -84,23 +88,22 @@ function plugin:UpdateGraphics()
 		else
 			point:Point("LEFT", self.points[i-1], "RIGHT", spacing, 0)
 		end
-		if self.settings.filled == true and not point.status then
+		if not point.status then
 			point.status = CreateFrame("StatusBar", nil, point)
 			point.status:SetStatusBarTexture(UI.NormTex)
 			point.status:SetFrameLevel(6)
 			point.status:SetInside()
 		end
 --		local color = GetColor(self.settings.colors, i, DefaultColors[i])
-		local color = ColorPercent(DefaultColors[1], DefaultColors[5], i, self.count)
---		print("color: "..unpack(color))
+		local color = ColorPercent(self.settings.colors[1], self.settings.colors[2], i, self.count)
 		if self.settings.filled == true then
 			point.status:SetStatusBarColor(unpack(color))
-			point.status:Show()
 			point:SetBackdropBorderColor(unpack(UI.BorderColor))
+			point.status:Show()
 		else
+			point.status:SetStatusBarColor(0, 0, 0, 1)
 			point:SetBackdropBorderColor(unpack(color))
-			--point:SetBackdropColor(1, 0, 1, 1) just a test
-			if point.status then point.status:Hide() end
+			point.status:Show()
 		end
 	end
 end
@@ -111,16 +114,11 @@ function plugin:Initialize()
 	self.settings.filled = DefaultBoolean(self.settings.filled, false)
 	self.settings.colors = self.settings.colors or DefaultColors
 
-	-- self.count = 8
-
-	-- self:UpdateGraphics()
 	self:SetCounts()
 end
 
 function plugin:SetCounts()
-
 	self.count = UnitPowerMax("player", 4)
-
 --print(tostring(self.count))
 	self:UpdateGraphics()
 end

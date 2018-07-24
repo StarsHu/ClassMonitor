@@ -1,8 +1,8 @@
-## Interface: 70000
-## Version: 3.6.1r
+## Interface: 70100
+## Version: 3.5.7
 ## Author: SinaC
 ## Title: |cFF148587Class|r Monitor
-## Credits: Smelly, Hydra, Krevlorne, Ildyria, Puffina
+## Credits: Smelly, Hydra, Krevlorne, Ildyria, Puffina, StarsHu
 ## Notes: Class monitor compatible with Blizzard UI, Tukui and ElvUI
 ## OptionalDeps: Tukui, ElvUI, ClassMonitor_ConfigUI
 ## SavedVariables: ClassMonitorData

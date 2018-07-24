@@ -12,7 +12,7 @@ Engine.Config = {
 	verticalIndex = number (-20->20)	[default:0]					in automatic anchor mode, these indices are used to order frames vertically (frame with index 0 (or lowest positive or highest negative) is anchored on mover)
 	horizontalIndex = number (0->9)		[default:0]					in autoanchor mode, if 2 frames have similar verticalIndex, these indices are used to order frames horizontally (if both horizontal and vertical are identical, frames are overlapped)
 
-	MOVER	create a mover in Tukui/ElvUI to be able to move bars via /moveui 
+	MOVER	create a mover in Tukui/ElvUI to be able to move bars via /moveui
 	主框体
 	text = string													text to display in config mode
 	width = number													width of anchor bar
@@ -75,7 +75,6 @@ Engine.Config = {
 	unit = "player"|"target"|"focus"|"pet"							check aura on this unit [default:"player"]
 	spellID = number												spell id of buff/debuff to monitor
 	filter = "HELPFUL" | "HARMFUL"									BUFF or DEBUFF
-	count = number													max number of stack to display
 	anchor =														see note below
 	width = number													width of bar[default: 85]
 	height = number													height of bar [default: 16]
@@ -134,7 +133,7 @@ Engine.Config = {
 	spellID = number												spell id of dot to monitor
 	latency = true|false											indicate latency on buff (useful for ignite)
 	threshold = number or 0											threshold to work with colors [default: 0]
-	colors = array of array : 
+	colors = array of array :
 		{
 			{255/255, 165/255, 0, 1},								bad color : under 75% of threshold -- here orange -- [default: class color]
 			{255/255, 255/255, 0, 1},								intermediate color : 0,75% of threshold -- here yellow -- [default: class color]
@@ -340,16 +339,37 @@ Engine.Config = {
 			displayName = L.classmonitor_WARLOCK_SOULSHARDS,
 			kind = "POWER",
 			powerType = SPELL_POWER_SOUL_SHARDS,
-			count = 5,
+--			count = 5,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
 			width = 262,
 			height = 16,
 			--spacing = 3,
-			--color = {148/255, 130/255, 201/255, 1},
-			filled = false,
+			color = {148/255, 130/255, 201/255, 1},
+			filled = true,
+--            borderRemind = true,
 			verticalIndex = -1,
 			horizontalIndex = 0,
+		},
+		{
+			name = "CM_REAP_SOULS",
+			displayName = L.classmonitor_WARLOCK_REAPSOULS,
+			kind = "AURABAR",
+			autohide = true,
+			showspellname = false,
+			unit = "player",
+			spellID = 216708,
+			color = {148/255, 130/255, 201/255, 1},
+			countFromOther = true,
+			countSpellID = 216695,
+			filter = "HELPFUL",
+			anchor = { "TOPLEFT", "CM_MANA", "BOTTOMLEFT", 0, -3 },
+			width = 262,
+			height = 16,
+			count =	12,
+			text = true,
+			duration = true,
+			specs = {1},
 		},
 	},
 	["ROGUE"] = {
@@ -382,14 +402,12 @@ Engine.Config = {
 			width = 262,
 			height = 16,
 			-- spacing = 3,
-			-- colors = { 
-				-- {0.69, 0.31, 0.31, 1}, -- 1
-				-- {0.65, 0.42, 0.31, 1}, -- 2
-				-- {0.65, 0.63, 0.35, 1}, -- 3
-				-- {0.46, 0.63, 0.35, 1}, -- 4
-				-- {0.33, 0.63, 0.33, 1}, -- 5
-			-- },
+			 colors = {
+				 {0.69, 0.31, 0.31, 1}, -- 1
+				 {0.33, 0.63, 0.33, 1}, -- 2
+			 },
 			filled = true,
+--			borderRemind = true,
 			autohide = false,
 			verticalIndex = -1,
 			horizontalIndex = 0,
@@ -444,7 +462,7 @@ Engine.Config = {
 			name = "CM_ARCANE_BLAST",
 			displayName = L.classmonitor_MAGE_ARCANE,
 			kind = "POWER",
-			powerType = 16,
+			powerType = SPELL_POWER_ARCANE_CHARGES,
 			count = 5,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
@@ -484,11 +502,13 @@ Engine.Config = {
 			displayName = L.classmonitor_DEATHKNIGHT_RUNES,
 			kind = "RUNES",
 			updatethreshold = 0.1,
-			autohide = true,
+			autohide = false,
 			orientation = "HORIZONTAL",
 			anchor = { "BOTTOMLEFT", "CM_RUNIC_POWER", "TOPLEFT", 0, 3 },
 			width = 262,
 			height = 16,
+			duration = true,
+			durationTextSize = 12,
 			--spacing = 3,
 			-- colors = {
 				-- { 0.69, 0.31, 0.31, 1 }, -- Blood
@@ -591,6 +611,19 @@ Engine.Config = {
 			verticalIndex = 0,
 			horizontalIndex = 0,
 		},
+		{
+			name = "CM_TOTEM",
+			displayName = L.classmonitor_SHAMAN_TOTEMS,
+			kind = "TOTEMS",
+			autohide = false,
+			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
+			width = 262,
+			height = 16,
+			--spacing = 3,
+			count = 4,
+			specs = {4},
+			text = true,
+		},
 	},
 	["MONK"] = {
 		{
@@ -654,6 +687,43 @@ Engine.Config = {
 			},
 			verticalIndex = 2,
 			horizontalIndex = 0,
+		},
+	},
+	['DEMONHUNTER'] = {
+		{
+			name = "CM_MOVER",
+			displayName = "Mover",
+			kind = "MOVER",
+			anchor = { "CENTER", UIParent, "CENTER", 0, -140 },
+			width = 262,
+			height = 16,
+			text = L.classmonitor_move
+		},
+		{
+			name = "CM_RESOURCE",
+			displayName = L.classmonitor_RESOURCEBAR,
+			kind = "RESOURCE",
+			text = true,
+			autohide = false,
+			anchor = { "TOPLEFT", "CM_MOVER", "TOPLEFT", 0, 0 },
+			width = 262,
+			height = 16,
+			verticalIndex = 0,
+			horizontalIndex = 0,
+		},
+		{
+			name = "CM_SOULFRAGMENT",
+			displayName = L.classmonitor_DEMONHUNTER_SOULFRAGMENT,
+			kind = "AURA",
+			autohide = true,
+			unit = "player",
+			spellID = 203981,
+			filter = "HELPFUL",
+			count = 5,
+			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
+			width = 262,
+			height = 16,
+			specs = {2},
 		},
 	},
 }

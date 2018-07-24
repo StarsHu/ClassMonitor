@@ -5,6 +5,7 @@ local UI = Engine.UI
 
 if UI.MyClass ~= "DEATHKNIGHT" then return end -- only for DK
 
+local ToClock = Engine.ToClock
 local PixelPerfect = Engine.PixelPerfect
 local DefaultBoolean = Engine.DefaultBoolean
 local GetColor = Engine.GetColor
@@ -45,14 +46,21 @@ function plugin:Update(elapsed)
 		for i = 1, self.count do
 			local runeIndex = self.settings.runemap[i]
 			local start, duration, finished = GetRuneCooldown(runeIndex)
+--			print(start, duration, finished)
 
 			local rune = self.runes[i]
 			rune.status:SetMinMaxValues(0, duration)
 
 			if finished then
 				rune.status:SetValue(duration)
+				if self.settings.duration == true then
+					rune.durationText:SetText("")
+				end
 			else
 				rune.status:SetValue(GetTime() - start)
+				if self.settings.duration == true then
+					rune.durationText:SetText(ToClock(start+duration-GetTime()))
+				end
 			end
 		end
 		self.timeSinceLastUpdate = 0
@@ -101,6 +109,12 @@ function plugin:UpdateGraphics()
 		local color = GetColor(self.settings.colors[specIndex])
 		rune.status:SetStatusBarColor(unpack(color))
 		rune.status:SetOrientation(self.settings.orientation)
+		--
+		if self.settings.duration == true and not rune.durationText then
+			rune.durationText = UI.SetFontString(rune.status, self.settings.durationTextSize)
+			rune.durationText:Point("CENTER", rune.status)
+		end
+		if rune.durationText then rune.durationText:SetText("") end
 	end
 end
 
@@ -114,6 +128,8 @@ function plugin:Initialize()
 	self.settings.colors = self.settings.colors or DefaultColors
 	--
 	self.count = 6
+	self.settings.duration = DefaultBoolean(self.settings.duration, true)
+	self.settings.durationTextSize = self.settings.durationTextSize or 12
 	--
 	self:UpdateGraphics()
 end

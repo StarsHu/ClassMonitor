@@ -1,7 +1,7 @@
-## Interface: 70000
-## Version: 1.1.2
+## Interface: 70100
+## Version: 1.2.5
 ## Author: SinaC
-## Credits: Elv, Starinnia, Puffina
+## Credits: Elv, Starinnia, Puffina, StarsHu
 ## Title: |cFF148587Class|r Monitor Config
 ## Notes: Config for ClassMonitor
 ## RequiredDeps: ClassMonitor

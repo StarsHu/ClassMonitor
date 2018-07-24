@@ -14,10 +14,13 @@ L.InvalidSpellName = "Incorrect SpellName"
 L.PluginNameAlreadyExists = "Plugin %s already exists"
 L.Threshold = "Threshold"
 L.Text = "Text"
+L.TextSize = "Text Size"
+L.TextSizeDesc = "Size of text on bar"
 L.CurrentValue = "Current value"
 L.TimeLeft = "Time left"
 L.Duration = "Duration"
 L.Filled = "Filled"
+L.BorderRemind = "BorderRemind"
 L.Count = "Count"
 L.Colors = "Colors"
 L.BarColor = "Bar color"
@@ -123,6 +126,10 @@ L.AurabarDurationDesc = "Display aura time left"
 L.AurabarColor = "Bar color"
 L.AurabarShowspellname = "Aura name"
 L.AurabarShowspellnameDesc = "Display aura name"
+L.AurabarCountFromOther = "Count from another or not"
+L.AurabarCountFromOtherDesc = "Will display another spell's count"
+L.AurabarCountSpellID = "Count origin spell ID"
+L.AurabarCountSpellIDDesc = "Count from which spell"
 
 L.BanditsGuileShallow = GetSpellInfo(84745)
 L.BanditsGuileModerate = GetSpellInfo(84746)
@@ -133,6 +140,7 @@ L.CDTextDesc = "Display spell name"
 L.CDDurationDesc = "Display time left"
 
 L.ComboFilledDesc = "Combo points filled or not"
+L.ComboBorderRemindDesc = "Combo points border display forever or not"
 
 L.DemonicfuryTextDesc = "Display current demonic fury value"
 
@@ -164,6 +172,7 @@ L.PowerValueShadowOrbs = "Shadow Orbs"
 L.PowerCount = "Maximum power count"
 L.PowerCountDesc = "Maximum power count"
 L.PowerFilledDesc = "Power filled or not"
+L.ComboBorderRemindDesc = "Power points border display forever or not"
 
 L.RechargeTextDesc = "Display time left on active charge"
 
@@ -186,6 +195,10 @@ L.RunesRunemap = "Runes order"
 L.RunesRunemapDesc = "Change runes order"
 L.RunesSlot = "Slot %d"
 L.RunesSlotDesc = "Choose rune in slot %d"
+L.RuneDuration = "Rune cooldown"
+L.RuneDurationDesc = "If display run cooldown or not?"
+L.RuneDurationSize = "Text size"
+L.RuneDurationSizeDesc = "Text size of rune cooldown"
 
 L.StaggerThresholdDesc = "Above this value, health percentage is not displayed"
 L.StaggerTextDesc = "Display current stagger value"
@@ -199,6 +212,8 @@ L.TankshieldDurationDesc = "Display shield time left"
 
 L.TotemsCountDesc = "Totem/mushrooms count"
 L.TotemsTextDesc = "Display time left on each totem/mushroom"
+L.TotemsEfflorescence = "1(Efflorescence)"
+L.TotemsShaman = "4(Shaman‘s totems)"
 
 --------
 L.PluginShortDescription_AURA = "Aura stacks"
@@ -221,10 +236,10 @@ L.PluginShortDescription_HEALTH = "Health bar"
 L.PluginDescription_HEALTH = "Display a health bar for player or target or focus or pet"
 L.PluginShortDescription_DOT = "Dot bar"
 L.PluginDescription_DOT = "Display a bar showing last tick damage for dot"
-L.PluginShortDescription_TOTEMS = "Totems and mushrooms"
-L.PluginDescription_TOTEMS = "Display totems for shaman or wild mushrooms for druid"
-L.PluginShortDescription_BANDITSGUILE = select(1, GetSpellInfo(84654)) -- Bandit's Guile
-L.PluginDescription_BANDITSGUILE = "Display stacks of bandit's guile for combat rogue"
+L.PluginShortDescription_TOTEMS = "Totems or Efflorescence"
+L.PluginDescription_TOTEMS = "Display totems for shaman or efflorescence for druid"
+--L.PluginShortDescription_BANDITSGUILE = select(1, GetSpellInfo(84654)) -- Bandit's Guile
+--L.PluginDescription_BANDITSGUILE = "Display stacks of bandit's guile for combat rogue"
 L.PluginShortDescription_STAGGER =  select(1, GetSpellInfo(124255)) -- Stagger
 L.PluginDescription_STAGGER = "Display a bar with current stagger value and health percentage of staggered damage"
 L.PluginShortDescription_TANKSHIELD = "Tank shield"

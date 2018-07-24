@@ -3,6 +3,8 @@ local ADDON_NAME, Engine = ...
 local L = Engine.Locales
 local D = Engine.Definitions
 
+local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
+
 local options = {
 	[1] = D.Helpers.Description,
 	[2] = D.Helpers.Name,
@@ -22,7 +24,7 @@ local options = {
 		disabled = D.Helpers.IsPluginDisabled
 	},
 	[10] = D.Helpers.Spell,
-	-- TODO: colors
+	[11] = color,
 	[12] = D.Helpers.Anchor,
 	[13] = D.Helpers.AutoGridAnchor,
 }

@@ -15,10 +15,13 @@ if GetLocale() == "zhCN" then
 	L.PluginNameAlreadyExists = "模组%s已存在"
 	L.Threshold = "阈值"
 	L.Text = "文本"
+	L.TextSize = "字体大小"
+	L.TextSizeDesc = "文本大小"
 	L.CurrentValue = "当前值"
 	L.TimeLeft = "剩余时间"
 	L.Duration = "持续时间"
 	L.Filled = "填充"
+	L.BorderRemind = "始终显示边框"
 	L.Count = "数量"
 	L.Colors = "颜色"
 	L.BarColor = "监视条颜色"
@@ -74,6 +77,9 @@ if GetLocale() == "zhCN" then
 	L.FilterValueHelpful = "Buff"
 	L.FilterValueHarmful = "Debuff"
 
+	L.Reverse = "反转"
+	L.ReverseDesc = "将增长方向从向右变为向左"
+
 	L.Unit = "单位"
 	L.UnitDesc = "要监视的单位"
 	L.UnitValuePlayer = "玩家"
@@ -121,6 +127,10 @@ if GetLocale() == "zhCN" then
 	L.AurabarColor = "监视条颜色"
 	L.AurabarShowspellname = "光环名称"
 	L.AurabarShowspellnameDesc = "显示光环名称"
+	L.AurabarCountFromOther = "另外的计数来源"
+	L.AurabarCountFromOtherDesc = "显示的计数来自其他法术"
+	L.AurabarCountSpellID = "计数光环名称"
+	L.AurabarCountSpellIDDesc = "计数光环名称"
 
 	L.BanditsGuileShallow = GetSpellInfo(84745)
 	L.BanditsGuileModerate = GetSpellInfo(84746)
@@ -131,6 +141,7 @@ if GetLocale() == "zhCN" then
 	L.CDDurationDesc = "显示剩余时间"
 
 	L.ComboFilledDesc = "连击点填充/不填充"
+	L.ComboBorderRemindDesc = "连击点边框是否一直显示"
 
 	L.DemonicfuryTextDesc = "显示当前的恶魔之怒的数值"
 
@@ -163,6 +174,7 @@ if GetLocale() == "zhCN" then
 	L.PowerCount = "最大能量数"
 	L.PowerCountDesc = "最大能量数"
 	L.PowerFilledDesc = "填充/不填充"
+	L.ComboBorderRemindDesc = "能量点边框是否一直显示"
 
 	L.RechargeTextDesc = "显示充能的剩余时间"
 
@@ -185,6 +197,10 @@ if GetLocale() == "zhCN" then
 	L.RunesRunemapDesc = "改变符文排列顺序"
 	L.RunesSlot = "栏位%d"
 	L.RunesSlotDesc = "选择符文放置在%d"
+	L.RuneDuration = "符文冷却时间"
+	L.RuneDurationDesc = "是否显示符文冷却时间"
+	L.RuneDurationSize = "字体大小"
+	L.RuneDurationSizeDesc = "符文冷却时间的显示字体大小"
 
 	L.StaggerThresholdDesc = "超过此值则不显示生命值百分比"
 	L.StaggerTextDesc = "显示当前醉拳值"
@@ -196,8 +212,10 @@ if GetLocale() == "zhCN" then
 
 	L.TankshieldDurationDesc = "显示护盾剩余时间"
 
-	L.TotemsCountDesc = "图腾/蘑菇数量"
-	L.TotemsTextDesc = "显示每根图腾/每个蘑菇的剩余时间"
+	L.TotemsCountDesc = "图腾/仆从数量"
+	L.TotemsTextDesc = "显示每根图腾/每个仆从的剩余时间"
+	L.TotemsEfflorescence = "1(奶德百花齐放)"
+	L.TotemsShaman = "4(萨满图腾/恶魔术仆从)"
 
 	--------
 	L.PluginShortDescription_AURA = "光环堆叠"
@@ -220,10 +238,10 @@ if GetLocale() == "zhCN" then
 	L.PluginDescription_HEALTH = "为玩家/目标/宠物/焦点提供一个生命值监视条"
 	L.PluginShortDescription_DOT = "DoT监视条"
 	L.PluginDescription_DOT = "在一个监视条上显示每一跳DoT的时间点"
-	L.PluginShortDescription_TOTEMS = "图腾和蘑菇"
-	L.PluginDescription_TOTEMS = "显示萨满图腾或德鲁伊野性蘑菇"
+	L.PluginShortDescription_TOTEMS = "图腾或百花"
+	L.PluginDescription_TOTEMS = "显示萨满图腾或德鲁伊百花齐放"
 	--ALREADY LOCALIZED IN ENGLISH.LUA --L.PluginShortDescription_BANDITSGUILE = select(1, GetSpellInfo(84654)) -- 盗匪之诈
-	L.PluginDescription_BANDITSGUILE = "显示战斗贼盗匪之诈的堆叠层数"
+--	L.PluginDescription_BANDITSGUILE = "显示战斗贼盗匪之诈的堆叠层数"
 	--ALREADY LOCALIZED IN ENGLISH.LUA --L.PluginShortDescription_STAGGER =  select(1, GetSpellInfo(124255)) -- 醉拳
 	L.PluginDescription_STAGGER = "显示当前酿酒武僧的醉拳值，以及醉拳伤害相对于生命值的百分比"
 	L.PluginShortDescription_TANKSHIELD = "坦克护盾"
