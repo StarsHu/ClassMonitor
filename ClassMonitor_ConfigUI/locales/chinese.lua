@@ -222,6 +222,8 @@ if GetLocale() == "zhCN" then
 	L.PluginDescription_AURA = "显示Buff/Debuff的堆叠数"
 	L.PluginShortDescription_AURABAR = "光环监视条"
 	L.PluginDescription_AURABAR = "为一个Buff/Debuff显示堆叠数量及剩余持续时间"
+	L.PluginShortDescription_BURNING_SOUL_SHARD = "毁灭术余烬"
+	L.PluginDescription_BURNING_SOUL_SHARD = "在一个监视条上显示毁灭术的余烬"
 	L.PluginShortDescription_RESOURCE = "资源监视条"
 	L.PluginDescription_RESOURCE = "在一个监视条上显示当前职业的主要资源，会根据专精/形态/姿态自动切换"
 	L.PluginShortDescription_COMBO = "连击点"

@@ -8,7 +8,7 @@ local PixelPerfect = Engine.PixelPerfect
 local DefaultBoolean = Engine.DefaultBoolean
 local GetColor = Engine.GetColor
 
-local plugin = Engine:NewPlugin("POWER")
+local plugin = Engine:NewPlugin("BURNING_SOUL_SHARD")
 
 -- own methods
 
@@ -32,20 +32,27 @@ function plugin:UpdateVisibility(event)
 end
 
 function plugin:UpdateValue(event, unit, powerType)
-	local value = UnitPower("player", self.settings.powerType)
---	print("Now: "..value)
+	local full, partial = math.modf(UnitPower("player", self.settings.powerType, true) / UnitPowerDisplayMod(self.settings.powerType))
+	local display_count  = full
+	if partial > 0 then
+		display_count = display_count + 1
+	end
+--	print(full, partial, display_count)
 	if self.settings.borderRemind == true then
-		if value and value > 0 then
-			for i = 1, value do self.points[i].status:Show() end
-			for i = value+1, self.count do self.points[i].status:Hide() end
+		if display_count and display_count > 0 then
+			for i = 1, full do self.points[i].status:SetValue(10) end
+			if partial > 0 then self.points[full + 1].status:SetValue(partial*10) end
+			for i = 1, display_count do self.points[i].status:Show() end
+			for i = display_count +1, self.count do self.points[i].status:Hide() end
 		else
 			for i = 1, self.count do self.points[i].status:Hide() end
 		end
 	else
-		if value and value > 0 then
-	--		assert(value <= self.count, "Current value:"..tostring(value).." must be <= to count:"..tostring(self.count))
-			for i = 1, value do self.points[i]:Show() end
-			for i = value+1, self.count do self.points[i]:Hide() end
+		if display_count and display_count > 0 then
+			for i = 1, full do self.points[i].status:SetValue(10) end
+			if partial > 0 then self.points[full + 1].status:SetValue(partial*10) end
+			for i = 1, display_count do self.points[i]:Show() end
+			for i = display_count +1, self.count do self.points[i]:Hide() end
 		else
 			for i = 1, self.count do self.points[i]:Hide() end
 		end
@@ -54,7 +61,7 @@ end
 
 function plugin:SetCounts()
 	local maxValue = UnitPowerMax("player", self.settings.powerType)
---	print("Max: "..maxValue)
+--	print(maxValue)
 	if maxValue and maxValue ~= self.maxValue then
 		self.count = maxValue
 
@@ -91,6 +98,7 @@ function plugin:UpdatePointGraphics(index, width, height, spacing)
 		point.status = CreateFrame("StatusBar", nil, point)
 		point.status:SetStatusBarTexture(UI.NormTex)
 		point.status:SetFrameLevel(6)
+		point.status:SetMinMaxValues(0, 10)
 		point.status:SetInside()
 	end
 	--
@@ -122,23 +130,10 @@ function plugin:UpdateGraphics()
 	frame:Size(frameWidth, height)
 	-- Create points
 	local width, spacing = PixelPerfect(frameWidth, self.count)
---	print(width, spacing)
 	self.points = self.points or {}
 	for i = 1, self.count do
 		self:UpdatePointGraphics(i, width, height, spacing)
 	end
---	print(self.old_count)
---	if self.old_count == nil  then
---		self.old_count = self.count
---	end
---	print(self.old_count)
---	if self.count < self.old_count then
---		for i = self.count, self.old_count do
---			print(i)
---			local point = self.points[index]
---			point:Hide()
---		end
---	end
 end
 
 -- overridden methods
