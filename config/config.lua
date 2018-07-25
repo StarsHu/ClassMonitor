@@ -29,17 +29,6 @@ Engine.Config = {
 	color|colors =													see note below [default: tukui power color]
 	specs = 														see note below [default: any]
 
-	COMBO:
-	连击点
-	autohide = true|false											hide or not while out of combat [default: true]
-	anchor =														see note below
-	width = number													bar total width (combo * count + spacing * count-1)
-	height = number													height of combo point [default: 16]
-	color|colors =													see note below [default: class color]
-	filled = true|false												is combo point filled or not [default: false]
-	smooth = true|false                                             color smoothly with count [default: false]
-	specs = 														see note below [default: any]
-
 	POWER (holy power/soul shard/light force, ...):
 	职业特殊能量
 	autohide = true|false											hide or not while out of combat [default: false]
@@ -224,22 +213,25 @@ Engine.Config = {
 			height = 16,
 			verticalIndex = 0,
 		},
-		{ -- 3
+		{
 			name = "CM_COMBO",
 			displayName = L.classmonitor_COMBOPOINTS,
-			kind = "COMBO",
-			anchor = { "BOTTOMLEFT", "CM_RESOURCE", "TOPLEFT", 0, 3 },
+			kind = "POWER",
+			powerType = Enum.PowerType.ComboPoints,
+--			autohide = false,
+			anchor =  { "BOTTOMLEFT", "CM_RESOURCE", "TOPLEFT", 0, 3 },
 			width = 262,
 			height = 16,
 			--spacing = 3,
-			colors = {
-				{0.69, 0.31, 0.31, 1}, -- 1
-				{0.65, 0.42, 0.31, 1}, -- 2
-				{0.65, 0.63, 0.35, 1}, -- 3
-				{0.46, 0.63, 0.35, 1}, -- 4
-				{0.33, 0.63, 0.33, 1}, -- 5
-			},
+--			colors = {
+--				{0.69, 0.31, 0.31, 1}, -- 1
+--				{0.65, 0.42, 0.31, 1}, -- 2
+--				{0.65, 0.63, 0.35, 1}, -- 3
+--				{0.46, 0.63, 0.35, 1}, -- 4
+--				{0.33, 0.63, 0.33, 1}, -- 5
+--			},
 			filled = false,
+--			borderRemind = true,
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
@@ -279,8 +271,7 @@ Engine.Config = {
 			name = "CM_HOLYPOWER",
 			displayName = L.classmonitor_PALADIN_HOLYPOWERBAR,
 			kind = "POWER",
-			specs = {3},
-			powerType = 9,
+			powerType = Enum.PowerType.HolyPower,
 			count = 5,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
 			width = 262,
@@ -290,6 +281,7 @@ Engine.Config = {
 			filled = true,
 			verticalIndex = -1,
 			horizontalIndex = 0,
+			specs = {3},
 		},
 	},
 	["WARLOCK"] = {
@@ -318,7 +310,7 @@ Engine.Config = {
 			name = "CM_SOUL_SHARD",
 			displayName = L.classmonitor_WARLOCK_SOULSHARDS,
 			kind = "POWER",
-			powerType = 7,
+			powerType = Enum.PowerType.SoulShards,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
 			width = 262,
@@ -356,18 +348,16 @@ Engine.Config = {
 		{
 			name = "CM_COMBO",
 			displayName = L.classmonitor_COMBOPOINTS,
-			kind = "COMBO",
+			kind = "POWER",
+			powerType = Enum.PowerType.ComboPoints,
+			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_ENERGY", "TOPLEFT", 0, 3 },
 			width = 262,
 			height = 16,
-			-- spacing = 3,
-			 colors = {
-				 {0.69, 0.31, 0.31, 1}, -- 1
-				 {0.33, 0.63, 0.33, 1}, -- 2
-			 },
-			filled = true,
+			--spacing = 3,
+			--color = {148/255, 130/255, 201/255, 1},
+--			filled = false,
 --			borderRemind = true,
-			autohide = false,
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
@@ -421,7 +411,7 @@ Engine.Config = {
 			name = "CM_ARCANE_BLAST",
 			displayName = L.classmonitor_MAGE_ARCANE,
 			kind = "POWER",
-			powerType = 16,
+			powerType = Enum.PowerType.ArcaneCharges,
 			count = 5,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
@@ -570,19 +560,18 @@ Engine.Config = {
 			verticalIndex = 0,
 			horizontalIndex = 0,
 		},
---		{
---			name = "CM_TOTEM",
---			displayName = L.classmonitor_SHAMAN_TOTEMS,
---			kind = "TOTEMS",
---			autohide = false,
---			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
---			width = 262,
---			height = 16,
---			--spacing = 3,
---			count = 4,
---			specs = {4},
---			text = true,
---		},
+		{
+			name = "CM_TOTEM",
+			displayName = L.classmonitor_SHAMAN_TOTEMS,
+			kind = "TOTEMS",
+			autohide = false,
+			anchor = { "TOPLEFT", "CM_MANA", "BOTTOMLEFT", 0, -3 },
+			width = 262,
+			height = 16,
+			--spacing = 3,
+			count = 4,
+			text = true,
+		},
 	},
 	["MONK"] = {
 		{
@@ -610,8 +599,7 @@ Engine.Config = {
 			name = "CM_CHI",
 			displayName = L.classmonitor_MONK_CHICHARGES,
 			kind = "POWER",
-			specs = {3},
-			powerType = 12, -- Bug in 5.1
+			powerType = Enum.PowerType.Chi,
 			count = 5,
 			anchor = { "BOTTOMLEFT", "CM_RESOURCE", "TOPLEFT", 0, 3 },
 			width = 262,
@@ -621,6 +609,7 @@ Engine.Config = {
 			filled = false,
 			verticalIndex = -1,
 			horizontalIndex = 0,
+			specs = {3},
 		},
 		{ -- only available is Brewmaster spec
 			name = "CM_STAGGER",

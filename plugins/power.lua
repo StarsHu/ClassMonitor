@@ -11,9 +11,7 @@ local GetColor = Engine.GetColor
 local plugin = Engine:NewPlugin("POWER")
 
 -- own methods
-
 function plugin:UpdateVisibility(event)
-    --
     local inCombat = true
     if event == "PLAYER_REGEN_DISABLED" or InCombatLockdown() then
         inCombat = true
@@ -22,7 +20,6 @@ function plugin:UpdateVisibility(event)
     end
     --
     if (self.settings.autohide == false or inCombat) and CheckSpec(self.settings.specs) then
-        --self:UpdateMaxValue()
         self:UpdateValue()
         --
         self.frame:Show()
@@ -33,11 +30,9 @@ end
 
 function plugin:UpdateValue(event, unit, powerType)
     local full, partial = math.modf(UnitPower("player", self.settings.powerType, true) / UnitPowerDisplayMod(self.settings.powerType))
---    print("UnitPower with true: " .. UnitPower("player", self.settings.powerType, true) .. "Mod: " .. UnitPowerDisplayMod(self.settings.powerType))
+    --    print("UnitPower with true: " .. UnitPower("player", self.settings.powerType, true) .. "Mod: " .. UnitPowerDisplayMod(self.settings.powerType))
     local display_count = full
-    if partial > 0 then
-        display_count = display_count + 1
-    end
+    if partial > 0 then display_count = display_count + 1 end
     --	print(full, partial, display_count)
     if self.settings.borderRemind == true then
         if display_count and display_count > 0 then
@@ -142,8 +137,8 @@ end
 function plugin:Initialize()
     -- set defaults
     self.settings.filled = DefaultBoolean(self.settings.filled, false)
-    self.settings.powerType = self.settings.powerType or 9
-    self.settings.colors = self.settings.colors or self.settings.color or UI.PowerColor(self.settings.powerType) or UI.ClassColor()
+    self.settings.powerType = self.settings.powerType or Enum.PowerType.HolyPower
+    self.settings.colors = UI.PowerColor(self.settings.powerType) or UI.ClassColor()
 
     self:SetCounts()
 end
@@ -159,9 +154,7 @@ function plugin:Enable()
 end
 
 function plugin:Disable()
-    --
     self:UnregisterAllEvents()
-    --
     self.frame:Hide()
 end
 
