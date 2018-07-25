@@ -178,3 +178,11 @@ profiles.lua
 #############
 
 .idea/
+
+/**
+!/.gitignore
+
+!/ClassMonitor_Config/
+/ClassMonitor_Config/**
+!/ClassMonitor/
+/ClassMonitor/**

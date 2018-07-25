@@ -143,6 +143,11 @@ local function SkinNextPrevButton(btn, horizonal)
 	btn:GetHighlightTexture():SetAllPoints(btn:GetNormalTexture())
 end
 
+local function SkinDropdownPullout(self)
+	if self and self.obj and self.obj.pullout and self.obj.pullout.frame and not self.obj.pullout.frame.template then
+		self.obj.pullout.frame:SetTemplate('Default', true)
+	end
+end
 
 local function SkinAce3()
 	local oldRegisterAsWidget = AceGUI.RegisterAsWidget
@@ -180,6 +185,7 @@ local function SkinAce3()
 		elseif TYPE == "Dropdown" then
 			local frame = widget.dropdown
 			local button = widget.button
+			local button_cover = widget.button_cover
 			local text = widget.text
 			frame:StripTextures()
 
@@ -195,10 +201,8 @@ local function SkinAce3()
 			end
 			button:SetParent(frame.Backdrop)
 			text:SetParent(frame.Backdrop)
-			button:HookScript('OnClick', function(this)
-				local self = this.obj
-				self.pullout.frame:SetTemplate('Default', true)
-			end)
+			button:HookScript('OnClick', SkinDropdownPullout)
+			button_cover:HookScript('OnClick', SkinDropdownPullout)
 		elseif TYPE == "LSM30_Font" or TYPE == "LSM30_Sound" or TYPE == "LSM30_Border" or TYPE == "LSM30_Background" or TYPE == "LSM30_Statusbar" then
 			local frame = widget.frame
 			local button = frame.dropButton
@@ -242,7 +246,9 @@ local function SkinAce3()
 		elseif TYPE == "EditBox" then
 			local frame = widget.editbox
 			local button = widget.button
-			_G[frame:GetName()]:Kill()
+			frame.Left:Kill()
+			frame.Middle:Kill()
+			frame.Right:Kill()
 			frame:Height(17)
 			frame:CreateBackdrop('Default')
 			frame.Backdrop:Point('TOPLEFT', -2, 0)
@@ -268,7 +274,7 @@ local function SkinAce3()
 			frame:SetTemplate('Default')
 			frame:Height(HEIGHT)
 			frame:SetThumbTexture(C["Medias"]["Blank"])
-			--frame:GetThumbTexture():SetVertexColor(C["Medias"]["BorderColor"])
+			frame:GetThumbTexture():SetVertexColor(C["Medias"]["BorderColor"])
 			frame:GetThumbTexture():Size(HEIGHT-2,HEIGHT+2)
 
 			editbox:SetTemplate('Default')
@@ -278,9 +284,9 @@ local function SkinAce3()
 			lowtext:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 2, -2)
 			hightext:SetPoint("TOPRIGHT", frame, "BOTTOMRIGHT", -2, -2)
 
-		elseif TYPE == "ColorPicker" then
-			local frame = widget.frame
-			local colorSwatch = widget.colorSwatch
+		-- elseif TYPE == "ColorPicker" then
+		-- 	local frame = widget.frame
+		-- 	local colorSwatch = widget.colorSwatch
 		
 		end
 		return oldRegisterAsWidget(self, widget)
@@ -308,6 +314,9 @@ local function SkinAce3()
 						child:StripTextures()
 					end
 				end
+			elseif TYPE == "Window" then
+				frame:StripTextures()
+				S:HandleCloseButton(frame.obj.closebutton)
 			end
 			frame:SetTemplate('Transparent')
 
@@ -354,6 +363,11 @@ local function SkinAce3()
 				widget.CreateTab = function(self, id)
 					local tab = oldCreateTab(self, id)
 					tab:StripTextures()
+					tab.Backdrop = CreateFrame("Frame", nil, tab)
+					tab.Backdrop:SetTemplate("Transparent")
+					tab.Backdrop:SetFrameLevel(tab:GetFrameLevel() - 1)
+					tab.Backdrop:Point("TOPLEFT", 10, -3)
+					tab.Backdrop:Point("BOTTOMRIGHT", -10, 0)
 					return tab
 				end
 			end
@@ -361,6 +375,10 @@ local function SkinAce3()
 			if widget.scrollbar then
 				SkinScrollBar(widget.scrollbar)
 			end
+		elseif TYPE == "SimpleGroup" then
+			local frame = widget.content:GetParent()
+			frame:SetTemplate("Transparent", nil, true) --ignore border updates
+			frame:SetBackdropBorderColor(0,0,0,0) --Make border completely transparent
 		end
 
 		return oldRegisterAsContainer(self, widget)
