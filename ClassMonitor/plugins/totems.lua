@@ -3,7 +3,7 @@ local ADDON_NAME, Engine = ...
 if not Engine.Enabled then return end
 local UI = Engine.UI
 
-if UI.MyClass ~= "SHAMAN" and UI.MyClass ~= "DRUID" and UI.MyClass ~= "WARLOCK" then return end
+if UI.MyClass ~= "SHAMAN" and UI.MyClass ~= "DRUID" and UI.MyClass ~= "WARLOCK" and UI.MyClass ~= "PALADIN" then return end
 
 local ToClock = Engine.ToClock
 local CheckSpec = Engine.CheckSpec
