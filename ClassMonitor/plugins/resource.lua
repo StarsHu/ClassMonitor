@@ -21,26 +21,15 @@ function plugin:Update(elapsed)
         self.bar.status:SetValue(value)
         if self.settings.text == true then
             local p = UnitPowerType("player")
-            if p == 0 then
+            if p == Enum.PowerType.Mana then
                 local valueMax = UnitPowerMax("player", p)
                 if value == valueMax then
-                    -- if value > 10000 then
-                    -- self.bar.valueText:SetFormattedText("%.1fk", value/1000)
-                    -- else
-                    -- self.bar.valueText:SetText(value)
-                    -- end
                     self.bar.valueText:SetText(FormatNumber(value))
                 else
                     local percentage = (value * 100) / valueMax
-                    -- if value > 10000 then
-                    -- self.bar.valueText:SetFormattedText("%2d%% - %.1fk", percentage, value/1000 )
-                    -- else
-                    -- self.bar.valueText:SetFormattedText("%2d%% - %u", percentage, value )
-                    -- end
                     self.bar.valueText:SetFormattedText("%2d%% - " .. FormatNumber(value), percentage)
                 end
             else
-                --self.bar.valueText:SetText(value)
                 self.bar.valueText:SetText(FormatNumber(value))
             end
         end

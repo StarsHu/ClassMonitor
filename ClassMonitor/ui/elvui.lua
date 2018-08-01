@@ -74,31 +74,36 @@ UI.ClassColor = function(className)
 end
 
 UI.PowerColor = function(resourceName)
-	local color = nil
-	if type(resourceName) == "number" then
-		if resourceName == 0 then
-			color = UF.db.colors.power.MANA
-		elseif resourceName == 1 then
-			color = UF.db.colors.power.RAGE
-		elseif resourceName == 2 then
-			color = UF.db.colors.power.FOCUS
-		elseif resourceName == 3 then
-			color = UF.db.colors.power.ENERGY
-		--elseif resourceName == SPELL_POWER_RUNES then
-		elseif resourceName == 6 then
-			color = UF.db.colors.power.RUNIC_POWER
-		elseif resourceName == 7 then
-			color = UF.db.colors.classResources.WARLOCK[1]
-		--elseif resourceName == SPELL_POWER_ECLIPSE then
-		elseif resourceName == 9 then
-			color = UF.db.colors.holyPower
-		--elseif resourceName == SPELL_POWER_CHI then
-		elseif resourceName == 13 then
-			color = UF.db.colors.classResources.PRIEST
-		end
-	else
-		color = UF.db.colors.power[resourceName]
-	end
+	local color
+	-- if type(resourceName) == "number" then
+	-- 	if resourceName == Enum.PowerType.Mana then
+	-- 		color = UF.db.colors.power.MANA
+	-- 	elseif resourceName == Enum.PowerType.Rage then
+	-- 		color = UF.db.colors.power.RAGE
+	-- 	elseif resourceName == Enum.PowerType.Focus then
+	-- 		color = UF.db.colors.power.FOCUS
+	-- 	elseif resourceName == Enum.PowerType.Energy then
+	-- 		color = UF.db.colors.power.ENERGY
+	-- 	--elseif resourceName == SPELL_POWER_RUNES then
+	-- 	elseif resourceName == Enum.PowerType.RunicPower then
+	-- 		color = UF.db.colors.power.RUNIC_POWER
+	-- 	elseif resourceName == Enum.PowerType.SoulShards then
+	-- 		color = UF.db.colors.classResources.WARLOCK[1]
+	-- 	--elseif resourceName == SPELL_POWER_ECLIPSE then
+	-- 	elseif resourceName == Enum.PowerType.HolyPower then
+	-- 		color = UF.db.colors.holyPower
+	-- 	--elseif resourceName == SPELL_POWER_CHI then
+	-- 	elseif resourceName == Enum.PowerType.Insanity then
+	-- 		color = UF.db.colors.classResources.PRIEST
+	-- 	-- elseif resourceName == SPELL_POWER_BURNING_EMBERS then
+	-- 	-- 	color = UF.db.colors.classResources.WARLOCK[3]
+	-- 	-- elseif resourceName == SPELL_POWER_DEMONIC_FURY then
+	-- 	-- 	color = UF.db.colors.classResources.WARLOCK[2]
+	-- 	end
+	-- else
+	-- 	color = UF.db.colors.power[resourceName]
+	-- end
+	color = UF.db.colors.power[resourceName]
 --print("resourceName:"..tostring(resourceName).."  "..tostring(color and color.r).."  "..tostring(color and color.g).."  "..tostring(color and color.b))
 	--local color = E.db.unitframe.colors.power[resourceName]
 	if color then

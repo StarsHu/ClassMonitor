@@ -142,7 +142,7 @@ end
 function plugin:Initialize()
     -- set defaults
     self.settings.filled = DefaultBoolean(self.settings.filled, false)
-    self.settings.powerType = self.settings.powerType or 9
+    self.settings.powerType = self.settings.powerType or Enum.PowerType.HolyPower
     self.settings.colors = self.settings.colors or self.settings.color or UI.PowerColor(self.settings.powerType) or UI.ClassColor()
 
     self:SetCounts()

@@ -14,7 +14,6 @@
 	<Script file="definitions\plugins\aura.lua"/>
 	<Script file="definitions\plugins\aurabar.lua"/>
 	<Script file="definitions\plugins\cd.lua"/>
-	<Script file="definitions\plugins\combo.lua"/>
 	<Script file="definitions\plugins\dot.lua"/>
 	<Script file="definitions\plugins\energize.lua"/>
 	<Script file="definitions\plugins\health.lua"/>
@@ -24,8 +23,8 @@
 	<Script file="definitions\plugins\resource.lua"/>
 	<Script file="definitions\plugins\runes.lua"/>
 	<Script file="definitions\plugins\stagger.lua"/>
-	<Script file="definitions\plugins\totems.lua"/>
 	<Script file="definitions\plugins\tankshield.lua"/>
+	<Script file="definitions\plugins\totems.lua"/>
 
 	<Script file="tukuiAce3Skin.lua"/>
 

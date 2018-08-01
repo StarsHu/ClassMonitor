@@ -21,7 +21,6 @@
 
 	<Script file="plugins\aura.lua"/>
 	<Script file="plugins\aurabar.lua"/>
-	<Script file="plugins\power.lua"/>
 	<Script file="plugins\combo.lua"/>
 	<Script file="plugins\resource.lua"/>
 	<Script file="plugins\health.lua"/>
