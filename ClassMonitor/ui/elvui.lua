@@ -11,14 +11,16 @@ Engine.Enabled = true -- ElvUI found
 ------------
 --- ElvUI
 ------------
---local E, _, _, P, _, _ = unpack(ElvUI)
-local E = unpack(ElvUI)
+local E, _, _, P, _, _ = unpack(ElvUI)
+--local E = unpack(ElvUI)
 
 local UF = E:GetModule("UnitFrames")
 
 --UI.BorderColor = P.general.bordercolor
 UI.BorderColor = E["media"].bordercolor
-UI.NormTex = E["media"].normTex
+UI.NormTex = [[Interface\AddOns\ElvUI\media\textures\normTex2.tga]]
+--UI.NormTex = E["media"].normTex
+--print("NormTex: "..tostring(UI.NormTex))
 UI.MyClass = E.myclass
 UI.MyName = E.myname
 UI.Border = E.Border
@@ -62,52 +64,17 @@ E.PopupDialogs["CLASSMONITOR_RESET"] = {
 UI.StaticPopup_Reset_show = function() E:StaticPopup_Show("CLASSMONITOR_RESET") end
 ------
 
--- local function ConvertColor(color)
-	-- return { color.r, color.g, color.b, color.a or 1 }
--- end
-
 UI.ClassColor = function(className)
 	local class = className or E.myclass
 	local color = RAID_CLASS_COLORS[class]
-	--return ConvertColor(color)
 	return E:GetColorTable(color)
 end
 
 UI.PowerColor = function(resourceName)
 	local color
-	-- if type(resourceName) == "number" then
-	-- 	if resourceName == Enum.PowerType.Mana then
-	-- 		color = UF.db.colors.power.MANA
-	-- 	elseif resourceName == Enum.PowerType.Rage then
-	-- 		color = UF.db.colors.power.RAGE
-	-- 	elseif resourceName == Enum.PowerType.Focus then
-	-- 		color = UF.db.colors.power.FOCUS
-	-- 	elseif resourceName == Enum.PowerType.Energy then
-	-- 		color = UF.db.colors.power.ENERGY
-	-- 	--elseif resourceName == SPELL_POWER_RUNES then
-	-- 	elseif resourceName == Enum.PowerType.RunicPower then
-	-- 		color = UF.db.colors.power.RUNIC_POWER
-	-- 	elseif resourceName == Enum.PowerType.SoulShards then
-	-- 		color = UF.db.colors.classResources.WARLOCK[1]
-	-- 	--elseif resourceName == SPELL_POWER_ECLIPSE then
-	-- 	elseif resourceName == Enum.PowerType.HolyPower then
-	-- 		color = UF.db.colors.holyPower
-	-- 	--elseif resourceName == SPELL_POWER_CHI then
-	-- 	elseif resourceName == Enum.PowerType.Insanity then
-	-- 		color = UF.db.colors.classResources.PRIEST
-	-- 	-- elseif resourceName == SPELL_POWER_BURNING_EMBERS then
-	-- 	-- 	color = UF.db.colors.classResources.WARLOCK[3]
-	-- 	-- elseif resourceName == SPELL_POWER_DEMONIC_FURY then
-	-- 	-- 	color = UF.db.colors.classResources.WARLOCK[2]
-	-- 	end
-	-- else
-	-- 	color = UF.db.colors.power[resourceName]
-	-- end
-	color = UF.db.colors.power[resourceName]
+	color = P.unitframe.colors.power[resourceName]
 --print("resourceName:"..tostring(resourceName).."  "..tostring(color and color.r).."  "..tostring(color and color.g).."  "..tostring(color and color.b))
-	--local color = E.db.unitframe.colors.power[resourceName]
 	if color then
-		--return ConvertColor(color)
 		return E:GetColorTable(color)
 	end
 end
@@ -132,7 +99,6 @@ UI.HealthColor = function(unit)
 		end
 		--color = UF.db.colors.reaction[UnitReaction(unit, "player")]
 	end
-	--return ConvertColor(color)-- or {1,1,1,1})
 	return E:GetColorTable(color)
 end
 
