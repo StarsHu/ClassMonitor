@@ -1,3 +1,6 @@
+* 1.5.0
+    1. Fix skin error when using with Tukui
+
 * 1.4.0
     1.  Fix error
 
