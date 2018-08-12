@@ -4,9 +4,9 @@ local L = Engine.Locales
 local D = Engine.Definitions
 local G = Engine.Globals
 
-local AC = LibStub("AceConfig-3.0")
-local ACD = LibStub("AceConfigDialog-3.0")
-local ACR = LibStub("AceConfigRegistry-3.0")
+local AC = LibStub("AceConfig-3.0-ElvUI")
+local ACD = LibStub("AceConfigDialog-3.0-ElvUI")
+local ACR = LibStub("AceConfigRegistry-3.0-ElvUI")
 
 assert(AC, "AceConfig-3.0 library not found")
 assert(ACD, "AceConfigDialog-3.0 library not found")

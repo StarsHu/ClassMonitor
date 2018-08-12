@@ -11,7 +11,7 @@
 -- @release $Id: AceConfigRegistry-3.0.lua 1169 2018-02-27 16:18:28Z nevcairiel $
 local CallbackHandler = LibStub("CallbackHandler-1.0")
 
-local MAJOR, MINOR = "AceConfigRegistry-3.0", 18
+local MAJOR, MINOR = "AceConfigRegistry-3.0-ElvUI", 18
 local AceConfigRegistry = LibStub:NewLibrary(MAJOR, MINOR)
 
 if not AceConfigRegistry then return end
@@ -92,6 +92,19 @@ local basekeys={
 	func=optmethodfalse,
 	arg={["*"]=true},
 	width=optstringnumber,
+	-- below here were created by ElvUI --
+	customWidth=optnumber,
+	textWidth=optmethodbool,
+	buttonElvUI=optmethodbool,
+	sortByValue=optmethodbool,
+	dragdrop=optmethodbool,
+		dragOnEnter=optmethodfalse,
+		dragOnLeave=optmethodfalse,
+		dragOnClick=optmethodfalse,
+		dragOnMouseUp=optmethodfalse,
+		dragOnMouseDown=optmethodfalse,
+		stateSwitchOnClick=optmethodfalse,
+		stateSwitchGetText=optmethodfalse,
 }
 
 local typedkeys={
@@ -165,6 +178,7 @@ local typedkeys={
 	},
 	color={
 		hasAlpha=optmethodbool,
+		reset=opttable,
 	},
 	keybinding={
 		-- TODO
