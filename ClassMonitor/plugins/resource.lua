@@ -65,9 +65,10 @@ function plugin:UpdateMaxValueAndColor()
     --
     --print("RESOURCE:UpdateMaxValueAndColor")
     local valueMax = UnitPowerMax("player", resource)
-    local resource, resourceName = UnitPowerType("player")
-    -- use colors[resourceName] if defined, else use default resource color or class color
-    local color = (self.settings.colors and self.settings.colors[resourceName]) or PowerColor(resourceName) or ClassColor()
+    local _, resourceName = UnitPowerType("player")
+    -- use color[resourceName] if defined, else use default resource color or class color
+    --    local color = (self.settings.color and self.settings.color) or PowerColor(resourceName) or ClassColor()
+    local color = self:GetColor(PowerColor(resourceName) or ClassColor())
     self.bar.status:SetStatusBarColor(unpack(color))
     self.bar.status:SetMinMaxValues(0, valueMax)
 end
@@ -103,9 +104,14 @@ end
 -- overridden methods
 function plugin:Initialize()
     -- set defaults
+    local _, resourceName = UnitPowerType("player")
+
     self.settings.text = DefaultBoolean(self.settings.text, true)
     self.settings.hideifmax = DefaultBoolean(self.settings.hideifmax, false)
-    self.settings.colors = self.settings.colors or self.settings.color
+    --    self.settings.color = self.settings.colors or self.settings.color or PowerColor(resourceName) or UI.ClassColor()
+    self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
+    local _, resourceName = UnitPowerType("player")
+    self.settings.color = self.settings.color or PowerColor(resourceName) or ClassColor()
     self.settings.textSize = self.settings.textSize or DefaultTextSize
     --
     self:UpdateGraphics()

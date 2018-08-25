@@ -112,7 +112,8 @@ function plugin:UpdateGraphics()
             totem.status:SetInside()
             totem.status:GetStatusBarTexture():SetHorizTile(false)
         end
-        local color = GetColor(self.settings.colors, i, UI.ClassColor())
+        --        local color = GetColor(self.settings.colors, i, UI.ClassColor())
+        local color = self:GetColor(self.settings.color)
         totem.status:SetStatusBarColor(unpack(color))
         totem.status:SetMinMaxValues(0, 300)
         totem.status:SetValue(0)
@@ -144,9 +145,11 @@ end
 function plugin:Initialize()
     -- set defaults
     self.settings.count = self.settings.count or 3
-    self.settings.colors = self.settings.colors or self.settings.color or UI.ClassColor() -- or CreateColorArray(color, self.settings.count)
     self.settings.text = DefaultBoolean(self.settings.text, false)
     -- no default for self.settings.map
+    --    self.settings.colors = self.settings.colors or self.settings.color or UI.ClassColor() -- or CreateColorArray(color, self.settings.count)
+    self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
+    self.settings.color = self.settings.color or UI.ClassColor()
     --
     self:UpdateGraphics()
 end

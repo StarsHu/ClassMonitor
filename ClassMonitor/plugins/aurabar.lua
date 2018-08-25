@@ -96,7 +96,8 @@ function plugin:UpdateGraphics()
 		bar.status:Hide()
     end
     --
-	bar.status:SetStatusBarColor(unpack(self.settings.color))
+	local color = self:GetColor(self.settings.color)
+	bar.status:SetStatusBarColor(unpack(color))
 --	bar.status:SetMinMaxValues(0, self.settings.count)
 	if self.settings.text == true and not bar.valueText then
         bar.textBar = CreateFrame("Frame", nil, bar)
@@ -123,7 +124,6 @@ function plugin:Initialize()
 --print("AURABAR:Initialize")
 	-- set defaults
 	self.settings.unit = self.settings.unit or "player"
-	self.settings.color = self.settings.color or UI.ClassColor()
 	self.settings.text = DefaultBoolean(self.settings.text, true)
 	self.settings.duration = DefaultBoolean(self.settings.duration, false)
 	self.settings.filter = self.settings.filter or "HELPFUL"
@@ -131,6 +131,8 @@ function plugin:Initialize()
 	self.settings.countFromOther = self.settings.countFromOther or false
 	self.settings.countSpellID = self.settings.countSpellID or self.settings.spellID
 	self.settings.showspellname = DefaultBoolean(self.settings.showspellname, true)
+	self.settings.color = self.settings.color or UI.ClassColor()
+	self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
 	--
 	self.auraName = GetSpellInfo(self.settings.spellID)
 	self.countAuraName = GetSpellInfo(self.settings.countSpellID)

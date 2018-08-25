@@ -49,24 +49,25 @@ function plugin:Update(elapsed)
                 self.dmg = value1
             end
             local remainTime = (expTime or 0) - GetTime()
-            local color
-            if self.settings.latency == true and remainTime <= 0.4 then
-                color = { 1, 0, 0, 1 } -- red
-            else
-                if self.settings.threshold == 0 then
-                    color = GetColor(self.settings.colors, 1, DefaultColors[1]) -- bad: orange
-                elseif self.settings.threshold * .75 >= self.dmg then
-                    color = GetColor(self.settings.colors, 1, DefaultColors[1]) -- bad: orange
-                elseif self.settings.threshold >= self.dmg then
-                    color = GetColor(self.settings.colors, 2, DefaultColors[2]) -- 0,75% -- yellow
-                else
-                    color = GetColor(self.settings.colors, 3, DefaultColors[3]) -- > 100% GO -- green
-                end
-            end
+            --            local color
+            --            if self.settings.latency == true and remainTime <= 0.4 then
+            --                color = { 1, 0, 0, 1 } -- red
+            --            else
+            --                if self.settings.threshold == 0 then
+            --                    color = GetColor(self.settings.colors, 1, DefaultColors[1]) -- bad: orange
+            --                elseif self.settings.threshold * .75 >= self.dmg then
+            --                    color = GetColor(self.settings.colors, 1, DefaultColors[1]) -- bad: orange
+            --                elseif self.settings.threshold >= self.dmg then
+            --                    color = GetColor(self.settings.colors, 2, DefaultColors[2]) -- 0,75% -- yellow
+            --                else
+            --                    color = GetColor(self.settings.colors, 3, DefaultColors[3]) -- > 100% GO -- green
+            --                end
+            --            end
+            local color = self:GetColor(self.settings.color)
             self.bar.status:SetStatusBarColor(unpack(color))
             self.bar.status:SetMinMaxValues(0, duration or 1)
             self.bar.status:SetValue(remainTime)
-            self.bar.text:SetText(FormatNumber(self.dmg))
+            self.bar.text:SetText(Engine.ToClock(remainTime))
         end
         self.timeSinceLastUpdate = 0
     end
@@ -152,7 +153,9 @@ end
 -- overridden methods
 function plugin:Initialize()
     -- set defaults
-    self.settings.colors = self.settings.colors or DefaultColors
+    self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
+    self.settings.color = self.settings.color or UI.ClassColor()
+    --    self.settings.colors = self.settings.colors or DefaultColors
     self.settings.latency = DefaultBoolean(self.settings.latency, false)
     self.settings.threshold = self.settings.threshold or 0
     if type(self.settings.threshold) ~= "number" then self.settings.threshold = 0 end
@@ -169,6 +172,7 @@ function plugin:Enable()
     self:RegisterEvent("PLAYER_REGEN_DISABLED", plugin.UpdateVisibility)
     self:RegisterEvent("PLAYER_REGEN_ENABLED", plugin.UpdateVisibility)
     self:RegisterEvent("PLAYER_ENTERING_WORLD", plugin.UpdateVisibility)
+    self:RegisterEvent("PLAYER_TARGET_CHANGED", plugin.UpdateVisibility)
     self:RegisterUnitEvent("UNIT_AURA", "target", plugin.UpdateVisibility)
 
     self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", plugin.UpdateDamage)

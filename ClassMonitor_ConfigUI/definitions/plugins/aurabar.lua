@@ -30,6 +30,7 @@ local function GetSpellIcon(info)
 end
 
 local color = D.Helpers.CreateColorsDefinition("color", 1, { L.BarColor })
+
 local options = {
     [1] = D.Helpers.Description,
     [2] = D.Helpers.Name,
@@ -118,7 +119,8 @@ local options = {
         set = D.Helpers.SetValue,
         disabled = D.Helpers.IsPluginDisabled
     },
-    [19] = color,
+    --    [19] = color,
+    [19] = D.Helpers.ColorPanel,
     [20] = D.Helpers.Anchor,
     [21] = D.Helpers.AutoGridAnchor,
 }

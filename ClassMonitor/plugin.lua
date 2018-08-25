@@ -131,6 +131,7 @@ end
 ------------------------------------------------
 -- public methods
 ------------------------------------------------
+
 -- Return current anchor in function of anchoring mode
 function Plugin:GetAnchor()
 --print("GetAnchor:"..tostring(ClassMonitorDataPerChar.Global.autogridanchor).."  "..tostring(settings.__autogridanchor).."  "..tostring(settings.anchor))
@@ -147,6 +148,13 @@ end
 function Plugin:GetHeight()
 --print("GetHeight:"..tostring(ClassMonitorDataPerChar.Global.autogridanchor).."  "..tostring(settings.__autogridheight).."  "..tostring(settings.height))
 	return (ClassMonitorDataPerChar.Global.autogridanchor == true and self.settings.__autogridheight) or self.settings.height
+end
+
+-- Return color depend on current customcolor setting
+function Plugin:GetColor(default)
+	-- return customized color if customcolor == true, else return the dafault
+	--print("GetColor:"..tostring(self.settings.customcolor).."  "..tostring(self.settings.color).."  "..tostring(default))
+	return (self.settings.customcolor and self.settings.color) or default
 end
 
 function Plugin:IsEnabled()

@@ -8,7 +8,6 @@ if UI.MyClass ~= "DEATHKNIGHT" then return end -- only for DK
 local ToClock = Engine.ToClock
 local PixelPerfect = Engine.PixelPerfect
 local DefaultBoolean = Engine.DefaultBoolean
-local GetColor = Engine.GetColor
 
 --
 local plugin = Engine:NewPlugin("RUNES")
@@ -106,7 +105,7 @@ function plugin:UpdateGraphics()
 			rune.status:SetMinMaxValues(0, 10)
 		end
 		local specIndex = GetSpecialization()
-		local color = GetColor(self.settings.colors[specIndex])
+		local color = self:GetColor(self.settings.colors[specIndex])
 		rune.status:SetStatusBarColor(unpack(color))
 		rune.status:SetOrientation(self.settings.orientation)
 		--

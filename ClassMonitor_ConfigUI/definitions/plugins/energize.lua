@@ -4,6 +4,7 @@ local L = Engine.Locales
 local D = Engine.Definitions
 
 local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
+
 local options = {
 	[1] = D.Helpers.Description,
 	[2] = D.Helpers.Name,

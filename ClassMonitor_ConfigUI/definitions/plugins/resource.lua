@@ -14,7 +14,7 @@ local function IsHideIfMaxDisabled(info)
 	return false
 end
 
-local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
+--local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
 
 local options = {
 	[1] = D.Helpers.Description,
@@ -54,8 +54,9 @@ local options = {
 		disabled = D.Helpers.IsPluginDisabled
 	},
 	-- TODO: colors (one entry by resource_type)
-	[12] = D.Helpers.Anchor,
-	[13] = D.Helpers.AutoGridAnchor,
+	[12] = D.Helpers.ColorPanel,
+	[13] = D.Helpers.Anchor,
+	[14] = D.Helpers.AutoGridAnchor,
 }
 
 D.Helpers:NewPluginDefinition("RESOURCE", options, L.PluginShortDescription_RESOURCE, L.PluginDescription_RESOURCE)

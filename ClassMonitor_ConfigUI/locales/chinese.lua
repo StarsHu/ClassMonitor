@@ -117,6 +117,9 @@ if GetLocale() == "zhCN" then
 	L.AutoGridAnchorHorizontalIndex = "列"
 	L.AutoGridAnchorHorizontalIndexDesc = "水平网格参数"
 
+	L.CustomColor = "自定义颜色"
+	L.CustomColorDesc = "使用自定义颜色而不是框架设定颜色"
+
 	-- 模组定义
 	L.AuraCount = "最大堆叠数"
 	L.AuraCountDesc = "最大堆叠数"
@@ -145,8 +148,8 @@ if GetLocale() == "zhCN" then
 
 	L.DemonicfuryTextDesc = "显示当前的恶魔之怒的数值"
 
-	L.DotLatency = "Dot间隔"
-	L.DotLatencyDesc = "显示Dot间隔时间"
+	L.DotLatency = "Dot变色"
+	L.DotLatencyDesc = "按照Dot剩余时间变化监视条颜色"
 	L.DotThresholdDesc = "阈值"
 	L.DotColor1 = "低于阈值"
 	L.DotColor2 = "75%阈值"

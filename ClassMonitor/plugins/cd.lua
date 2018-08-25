@@ -78,7 +78,8 @@ function plugin:UpdateGraphics()
 		bar.status:SetFrameLevel(6)
 		bar.status:SetInside()
 	end
-	bar.status:SetStatusBarColor(unpack(self.settings.color))
+	local color = self:GetColor(self.settings.color)
+	bar.status:SetStatusBarColor(unpack(color))
 	--
 	if self.settings.text == true and not bar.nameText then
 		bar.nameText = UI.SetFontString(bar.status, 12)
@@ -96,9 +97,10 @@ end
 -- overridden methods
 function plugin:Initialize()
 	-- set defaults
-	self.settings.color = self.settings.color or UI.ClassColor()
 	self.settings.text = DefaultBoolean(self.settings.text, true)
 	self.settings.duration = DefaultBoolean(self.settings.duration, true)
+	self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
+	self.settings.color = self.settings.color or UI.ClassColor()
 	-- no default for spellID
 	--
 	self.spellName = GetSpellInfo(self.settings.spellID)

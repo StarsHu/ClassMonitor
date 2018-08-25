@@ -24,7 +24,8 @@ local options = {
 		disabled = D.Helpers.IsPluginDisabled
 	},
 	[10] = D.Helpers.Spell,
-	[11] = color,
+	--	[11] = color,
+	[11] = D.Helpers.ColorPanel,
 	[12] = D.Helpers.Anchor,
 	[13] = D.Helpers.AutoGridAnchor,
 }

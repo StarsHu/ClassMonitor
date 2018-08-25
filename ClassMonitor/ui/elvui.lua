@@ -1,4 +1,4 @@
-local ADDON_NAME, Engine = ...
+local _, Engine = ...
 local L = Engine.Locales
 local UI = Engine.UI
 
@@ -18,9 +18,8 @@ local UF = E:GetModule("UnitFrames")
 
 --UI.BorderColor = P.general.bordercolor
 UI.BorderColor = E["media"].bordercolor
-UI.NormTex = [[Interface\AddOns\ElvUI\media\textures\normTex2.tga]]
 --UI.NormTex = E["media"].normTex
---print("NormTex: "..tostring(UI.NormTex))
+UI.NormTex = [[Interface\AddOns\ElvUI\media\textures\normTex2.tga]]
 UI.MyClass = E.myclass
 UI.MyName = E.myname
 UI.Border = E.Border
@@ -72,7 +71,42 @@ end
 
 UI.PowerColor = function(resourceName)
 	local color
-	color = P.unitframe.colors.power[resourceName]
+	if type(resourceName) == "number" then
+		if resourceName == Enum.PowerType.Mana then
+			color = E.db.unitframe.colors.power.MANA
+		elseif resourceName == Enum.PowerType.Rage then
+			color = E.db.unitframe.colors.power.RAGE
+		elseif resourceName == Enum.PowerType.Focus then
+			color = E.db.unitframe.colors.power.FOCUS
+		elseif resourceName == Enum.PowerType.Energy then
+			color = E.db.unitframe.colors.power.ENERGY
+		elseif resourceName == Enum.PowerType.ComboPoints then
+			color = E.db.unitframe.colors.classResources.comboPoints[2]
+		elseif resourceName == Enum.PowerType.RunicPower then
+			color = E.db.unitframe.colors.power.RUNIC_POWER
+		elseif resourceName == Enum.PowerType.SoulShards then
+			color = E.db.unitframe.colors.classResources.WARLOCK
+		elseif resourceName == Enum.PowerType.LunarPower then
+			color = E.db.unitframe.colors.power.LUNAR_POWER
+		elseif resourceName == Enum.PowerType.HolyPower then
+			--	 		color = UF.db.colors.classResources.PALADIN
+			color = E.db.unitframe.colors.classResources.PALADIN
+		elseif resourceName == Enum.PowerType.Maelstrom then
+			color = E.db.unitframe.colors.power.MAELSTROM
+		elseif resourceName == Enum.PowerType.Chi then
+			color = E.db.unitframe.colors.classResources.MONK[2]
+		elseif resourceName == Enum.PowerType.Insanity then
+			color = E.db.unitframe.colors.power.INSANITY
+		elseif resourceName == Enum.PowerType.Fury then
+			color = E.db.unitframe.colors.power.FURY
+		elseif resourceName == Enum.PowerType.Pain then
+			color = E.db.unitframe.colors.power.PAIN
+		end
+	else
+		color = P.unitframe.colors.power[resourceName]
+		--	 	color = E.db.unitframe.colors.power[resourceName]
+	end
+	--	color = P.unitframe.colors.power[resourceName]
 --print("resourceName:"..tostring(resourceName).."  "..tostring(color and color.r).."  "..tostring(color and color.g).."  "..tostring(color and color.b))
 	if color then
 		return E:GetColorTable(color)

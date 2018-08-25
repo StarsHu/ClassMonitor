@@ -128,8 +128,7 @@ D.Globals.CreateOptionFromDefinition = function(definition, orderID, sectionNode
 		--name = sectionNode.displayName or sectionNode.name,
 		name = GetDisplayName,
 		arg = {section = sectionNode}, -- to be coherent with subnodes
-		args = {
-		}
+        args = {}
 	}
 	if sectionNode.__invalid ~= true then -- invalid plugin can only be deleted
 		for k, v in pairs(definition) do
@@ -430,6 +429,7 @@ local function IsCreateNewPluginButtonHidden(info)
 end
 
 local function CreateNewPluginInstance(info)
+    -- set plugin instance default config here
 	local plugin = {
 		name = newPlugin.name,
 		kind = newPlugin.kind,

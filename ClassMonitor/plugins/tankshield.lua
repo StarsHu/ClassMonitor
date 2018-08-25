@@ -97,7 +97,8 @@ function plugin:UpdateGraphics()
 		bar.status:SetInside()
 		bar.status:SetMinMaxValues(0, 1) -- dummy value
 	end
-	bar.status:SetStatusBarColor(unpack(self.settings.color))
+	local color = self:GetColor(self.settings.color)
+	bar.status:SetStatusBarColor(unpack(color))
 
 	if not bar.valueText then
 		bar.valueText = UI.SetFontString(bar.status, 12)
@@ -115,6 +116,7 @@ end
 -- overridden methods
 function plugin:Initialize()
 	-- set defaults
+	self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
 	self.settings.color = self.settings.color or UI.ClassColor()
 	self.settings.duration = DefaultBoolean(self.settings.duration, false)
 	--

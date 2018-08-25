@@ -3,7 +3,7 @@ local ADDON_NAME, Engine = ...
 local L = Engine.Locales
 local D = Engine.Definitions
 
-local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
+--local color = D.Helpers.CreateColorsDefinition("color", 1, {L.BarColor})
 
 local powerTypes = {
 	[4] = L.PluginShortDescription_COMBO,
@@ -62,7 +62,7 @@ local options = {
 		set = D.Helpers.SetValue,
 		disabled = D.Helpers.IsPluginDisabled
 	},
-	[14] = color,
+    [14] = D.Helpers.ColorPanel,
 	[15] = D.Helpers.Anchor,
 	[16] = D.Helpers.AutoGridAnchor,
 }

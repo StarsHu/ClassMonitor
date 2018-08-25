@@ -36,6 +36,7 @@ local options = {
 	},
 	-- TODO: map
 	-- TODO: colors
+	[12] = D.Helpers.ColorPanel,
 	[13] = D.Helpers.Anchor,
 	[14] = D.Helpers.AutoGridAnchor,
 }

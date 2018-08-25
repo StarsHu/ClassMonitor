@@ -422,17 +422,6 @@ D.Helpers.Spell = {
             get = D.Helpers.GetNumberValue,
             set = D.Helpers.SetNumberValue, --D.Helpers.SetValue,
         },
-        --[[
-        spellName = {
-            order = 2,
-            name = L.SpellSpellName,
-            desc = L.SpellSpellNameDesc,
-            type = "input",
-            validate = ValidateSpellName,
-            get = GetSpellName,
-            set = SetSpellName,
-        },
-        --]]
         spellIcon = {
             order = 2,
             name = GetSpellName, --"Invalid",
@@ -641,23 +630,34 @@ D.Helpers.Anchor = {
 
 -----------------------------
 -- Colors
+
+D.Helpers.IsCustomColor = function(info)
+    --print("IsDisabled:"..tostring(info.arg.key).."  "..tostring(not info.arg.section.enabled))
+    return not info.arg.section.customcolor
+end
+
 -- Only one color
 local function GetColor(info)
-    local color = D.Helpers.GetValue(info)
-    return unpack(color)
+    local color = D.Helpers.GetValueUsingInfo(info)
+    --    local color = info.arg.section[info[#info]]
+    local extend_color = { color[1], color[2], color[3], color[4], 0.1, 1, 0.1 }
+    --    return unpack(extend_color)
+    --    return unpack(color)
+    return color[1], color[2], color[3], color[4]
 end
 
 local function SetColor(info, r, g, b)
     local color = { r, g, b }
-    D.Helpers.SetValue(info, color)
+    --    D.Helpers.SetValue(info, color)
+    D.Helpers.SetValueUsingInfo(info, color)
 end
 
 -- Array of color
 local function GetColors(info)
     local value = D.Helpers.GetValue(info)
     local index = tonumber(info[#info])
-    local color = value[index]
-    --print("GetColors:"..tostring(value).."  "..tostring(index).."  "..tostring(color[1]).."  "..tostring(color[2]).."  "..tostring(color[3]))
+    local color = value[index] and value[index] or value[#value]
+    --    print("GetColors:" .. tostring(value) .. "  " .. tostring(index) .. "  " .. tostring(color[1]) .. "  " .. tostring(color[2]) .. "  " .. tostring(color[3]))
     return unpack(color)
 end
 
@@ -679,7 +679,7 @@ end
 
 D.Helpers.CreateColorsDefinition = function(key, count, names)
     --print(tostring(not names).."  "..tostring(names).."  "..tostring(names and type(names) == "table").."  "..tostring(names and type(names) == "table" and #names == count))
-    assert(not names or (names and count == 1 and type(names) == "string") or (names and type(names) == "table" and #names == count), "Invalid names for colors definition")
+    --    assert(not names or (names and count == 1 and type(names) == "string") or (names and type(names) == "table" and #names == count), "Invalid names for colors definition")
     if count == 1 then
         return {
             key = key,
@@ -695,7 +695,7 @@ D.Helpers.CreateColorsDefinition = function(key, count, names)
         for i = 1, count do
             args[tostring(i)] = {
                 order = i,
-                name = names and names[i] or tostring(i),
+                name = type(names) == "table" and names[i] or names,
                 type = "color"
             }
         end
@@ -712,3 +712,32 @@ D.Helpers.CreateColorsDefinition = function(key, count, names)
         }
     end
 end
+
+D.Helpers.ColorPanel = {
+    key = "color_panel",
+    name = L.BarColor,
+    desc = L.BarColor,
+    type = "group",
+    guiInline = true,
+    disabled = D.Helpers.IsPluginDisabled,
+    args = {
+        customcolor = {
+            order = 1,
+            name = L.CustomColor,
+            desc = L.CustomColorDesc,
+            type = "toggle",
+            get = D.Helpers.GetValueUsingInfo,
+            set = D.Helpers.SetValueUsingInfo,
+        },
+        color = {
+            order = 2,
+            name = L.Colors,
+            desc = L.Colors,
+            type = "color",
+            get = GetColor,
+            set = SetColor,
+            hasAlpha = true,
+            disabled = D.Helpers.IsCustomColor,
+        },
+    },
+}

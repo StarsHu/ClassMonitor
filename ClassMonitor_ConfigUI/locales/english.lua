@@ -116,6 +116,9 @@ L.AutoGridAnchorVerticalIndexDesc = "Vertical index in grid"
 L.AutoGridAnchorHorizontalIndex = "Column"
 L.AutoGridAnchorHorizontalIndexDesc = "Horizontal index in grid"
 
+L.CustomColor = "Costom color"
+L.CustomColorDesc = "Will using color you like"
+
 -- Plugin definition
 L.AuraCount = "Maximum stack count"
 L.AuraCountDesc = "Maximum stack count"

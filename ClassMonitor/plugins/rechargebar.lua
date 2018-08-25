@@ -127,6 +127,7 @@ end
 -- overridden methods
 function plugin:Initialize()
 	-- set defaults
+	self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
 	self.settings.color = self.settings.color or UI.ClassColor()
 	self.settings.text = DefaultBoolean(self.settings.text, true)
 	-- no default for spellID

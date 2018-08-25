@@ -31,8 +31,8 @@ end
 
 function plugin:UpdateValue()
 	if not self.auraName then return end
-    local name, _, stack, _, _, _, unitCaster = AuraUtil.FindAuraByName(self.auraName, self.settings.unit, self.settings.filter)
-    --	print("auraname: "..tostring(self.auraName).."; name: "..tostring(name))
+	local name, _, stack, _, _, _, unitCaster = AuraUtil.FindAuraByName(self.auraName, self.settings.unit, self.settings.filter)
+	--	print("auraname: "..tostring(self.auraName).."; name: "..tostring(name))
 	if name == self.auraName and (unitCaster == "player" or (self.settings.unit == "pet" and unitCaster == "pet")) and stack > 0 then
 		assert(stack <= self.settings.count, "Too many stacks:"..tostring(stack)..", maximum has been set to "..tostring(self.settings.count))
 		for i = 1, stack do self.stacks[i]:Show() end
@@ -88,7 +88,8 @@ function plugin:UpdateGraphics()
 			stack.status:SetFrameLevel(6)
 			stack.status:SetInside()
 		end
-		local color = GetColor(self.settings.colors, i, UI.ClassColor())
+		local color = self:GetColor(self.settings.color)
+		--		local color = GetColor(self.settings.colors, i, UI.ClassColor())
 		if self.settings.filled == true then
 			stack.status:SetStatusBarColor(unpack(color))
 			stack.status:Show()
@@ -107,8 +108,9 @@ function plugin:Initialize()
 	self.settings.filled = DefaultBoolean(self.settings.filled, false)
 	self.settings.count = self.settings.count or 1
 	self.settings.filter = self.settings.filter or "HELPFUL"
-	self.settings.colors = self.settings.colors or self.settings.color or UI.ClassColor()
-	-- no default for spellID
+	--	self.settings.colors = self.settings.colors or self.settings.color or UI.ClassColor()
+	self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
+	self.settings.color = self.settings.color or UI.ClassColor()
 	--
 	self.auraName = GetSpellInfo(self.settings.spellID)
 	--

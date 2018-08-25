@@ -21,7 +21,7 @@ local options = {
 		set = D.Helpers.SetValue,
 		disabled = D.Helpers.IsPluginDisabled
 	},
-	[9] = color,
+	[9] = D.Helpers.ColorPanel,
 	[10] = D.Helpers.Anchor,
 	[11] = D.Helpers.AutoGridAnchor,
 }
