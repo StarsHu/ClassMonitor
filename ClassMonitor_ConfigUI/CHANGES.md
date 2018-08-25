@@ -1,5 +1,7 @@
-* 1.5.0
+* 1.4.2
     1. Fix skin error when using with Tukui
+    2. Add custom color feature
+    3. Using elvui edition AceGUI
 
 * 1.4.0
     1.  Fix error

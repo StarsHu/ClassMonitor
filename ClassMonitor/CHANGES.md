@@ -1,7 +1,8 @@
-* 3.8.0
+* 3.7.2
     1. Fix texture and color error when working with BenikUI
     2. Deprecate combo plugin, using power instead
     3. Fix totems plugin, add more class support
+    4. Add custom color feature
 
 * 3.7.1
     1. Fix the display error of soul shard on Destruction warlock
