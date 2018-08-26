@@ -1,3 +1,6 @@
+* 3.7.2.1
+    1. Fix AuraBar display error
+    
 * 3.7.2
     1. Fix texture and color error when working with BenikUI
     2. Deprecate combo plugin, using power instead
