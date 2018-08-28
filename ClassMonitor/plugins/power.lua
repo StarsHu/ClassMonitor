@@ -103,18 +103,14 @@ function plugin:UpdatePointGraphics(index, width, height, spacing)
         point.status:SetInside()
     end
 
-    --    local color = GetColor(self.settings.color, index, UI.ClassColor())
-    --    local color = self:GetColor(UI.ClassColor())
     local color = self:GetColor(self.settings.color)
+    point.status:SetStatusBarColor(unpack(color))
+    point:SetBackdropBorderColor(unpack(UI.BorderColor))
+
     if self.settings.filled == true then
-        point.status:SetStatusBarColor(unpack(color))
-        point:SetBackdropBorderColor(unpack(UI.BorderColor))
         point.status:Show()
     else
-        point.status:SetStatusBarColor(0, 0, 0, 1)
-        point:SetBackdropBorderColor(unpack(color))
-        point.status:Show()
-        --		if point.status then point.status:Hide() end
+        point.status:Hide()
     end
 end
 
@@ -144,10 +140,10 @@ end
 function plugin:Initialize()
     -- set defaults
     self.settings.filled = DefaultBoolean(self.settings.filled, false)
-    self.settings.borderRemind = DefaultBoolean(self.settings.filled, true)
+    self.settings.borderRemind = DefaultBoolean(self.settings.borderRemind, false)
     self.settings.powerType = self.settings.powerType or Enum.PowerType.HolyPower
     self.settings.customcolor = DefaultBoolean(self.settings.customcolor, false)
-    self.settings.color = self.settings.color or UI.PowerColor(self.settings.powerType)
+    self.settings.color = self.settings.color or UI.PowerColor(self.settings.powerType) or UI.ClassColor()
 
     self:SetCounts()
 end
